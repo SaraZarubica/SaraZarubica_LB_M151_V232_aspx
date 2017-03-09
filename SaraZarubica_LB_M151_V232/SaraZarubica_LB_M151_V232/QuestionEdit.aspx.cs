@@ -94,21 +94,37 @@ namespace SaraZarubica_LB_M151_V232
             Question q = getQuestionFromView();
             List<Answer> listAnswer = getAnwersFromView();
 
-            qRep.Save(q);
-            listAnswer.ForEach(x => {
-                x.QuestionId = q.Id;
-                x.UserId = getUserId();
+            if (getTrueFalseValue() == null && validateQuestion(q) == null &&
+                validateCategory(q) == null && validateAnswers(listAnswer) == null) {
+
+                qRep.Save(q);
+                listAnswer.ForEach(x => {
+                    x.QuestionId = q.Id;
+                    x.UserId = getUserId();
                 });
-            aRep.Save(listAnswer);
+                aRep.Save(listAnswer);
+                Response.Redirect("~/QuestionList.aspx");
+            }
+            else
+            {
+                txtBoxError.Visible = true;
+                txtBoxError.Text = getTrueFalseValue() +
+                    "\n" + validateQuestion(q) + 
+                    "\n" + validateCategory(q) +
+                    "\n" + validateAnswers(listAnswer);
+            }
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             QuestionRepository qRep = new QuestionRepository();
-            
-            
-            
-            
-            
+            string strId = Request.QueryString["qId"];
+            if (!string.IsNullOrEmpty(strId)) // existiert schon
+            {
+                qId = Convert.ToInt32(strId);
+            }
+            qRep.Delete(qId.Value);
+
+            Response.Redirect("~/QuestionList.aspx");
         }
 
         private Question getQuestionFromView()
@@ -156,13 +172,75 @@ namespace SaraZarubica_LB_M151_V232
             return answers;
         }
 
-        private void validateQuestion(Question q)
+        private string validateCategory(Question q)
         {
+            string errorMessage = null;
+
             if(q.CategoryId < 1)
             {
-                txtBoxError.Text += "Kategorie wählen";
-                txtBoxError.Visible = true;
+                errorMessage  = "Kategorie wählen";
             }
+            return errorMessage;
+        }
+
+        private string validateQuestion(Question q)
+        {
+            string errorMessage = null;
+
+            if (q.QuestionText == "")
+            {
+                errorMessage = "Frage darf nicht leer sein";
+            }
+            return errorMessage;
+        }
+
+        private string validateAnswers(List<Answer> list)
+        {
+            string errorMessage = null;
+
+            for (int countAnswer = 0; countAnswer < 3; countAnswer++)
+            {
+                if(list[countAnswer].AnswerText == "")
+                {
+                    errorMessage = "Alle vier Antworten müssen ausgefüllt werden.";
+                    return errorMessage;
+                }
+            }
+
+            return errorMessage;
+        }
+
+        private string getTrueFalseValue()
+        {
+            string errorMessage = null;
+
+            //Darf nur eine Antwort auf Richtig gesetzt sein
+            int countTrues = 0;
+            if (ddA1.SelectedItem.Text == "Richtig")
+            {
+                countTrues++;
+            }
+            if (ddA2.SelectedItem.Text == "Richtig")
+            {
+                countTrues++;
+            }
+            if (ddA3.SelectedItem.Text == "Richtig")
+            {
+                countTrues++;
+            }
+            if (ddA4.SelectedItem.Text == "Richtig")
+            {
+                countTrues++;
+            }
+
+            if (countTrues > 1)
+            {
+                errorMessage = "Es darf nur eine Antwort richtig sein.";
+            }else if (countTrues < 1)
+            {
+                errorMessage = "Eine Antwort muss richtig sein.";
+            }
+            return errorMessage;
         }
 
        private int toInt(string str)
@@ -202,5 +280,9 @@ namespace SaraZarubica_LB_M151_V232
             return val ? "1" : "0";
         }
 
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/QuestionList.aspx");
+        }
     }
 }

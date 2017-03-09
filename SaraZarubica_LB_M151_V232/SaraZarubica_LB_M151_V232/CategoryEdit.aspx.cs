@@ -11,9 +11,10 @@ namespace SaraZarubica_LB_M151_V232
 {
     public partial class CategoryEdit : System.Web.UI.Page
     {
+        private int? cId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //redirectToLoginIfNecessary();
+            redirectToLoginIfNecessary();
 
             if (!Page.IsPostBack) // first load.
             {
@@ -30,14 +31,13 @@ namespace SaraZarubica_LB_M151_V232
             }
         }
 
-
-
         protected void setView(Category c)
         {
             if (c != null)
             {
+                btnDelete.Visible = true;
                 HiddenCId.Value = c.Id.ToString();
-                txtBoxC.Text = c.Id.ToString();
+                txtBoxC.Text = c.CategoryText;
             }
         }
 
@@ -61,15 +61,7 @@ namespace SaraZarubica_LB_M151_V232
             //c.UserId = getUserId();
             return c;
         }
-
-        //private void validateQuestion(Question q)
-        //{
-        //    if (q.CategoryId < 1)
-        //    {
-        //        txtBoxError.Text += "Kategorie wählen";
-        //        txtBoxError.Visible = true;
-        //    }
-        //}
+        
 
         private int toInt(string str)
         {
@@ -82,29 +74,10 @@ namespace SaraZarubica_LB_M151_V232
 
         private void redirectToLoginIfNecessary()
         {
-            string userId = Session["UserId"].ToString();
-            if (string.IsNullOrEmpty(userId))
+            if (getUserId() < 1)
             {
-                Response.Redirect("login.aspx");
+                Response.Redirect("~/Account/Login.aspx");
             }
-            else
-            {
-                if (Convert.ToInt32(userId) < 1)
-                {
-                    Response.Redirect("login.aspx");
-                }
-            }
-        }
-
-        private int getUserId()
-        {
-            return 1;
-            string userId = Session["UserId"]?.ToString();
-            if (string.IsNullOrEmpty(userId))
-            {
-                return toInt(userId);
-            }
-            else { return -1; }
         }
 
         protected void btnSave_Click1(object sender, EventArgs e)
@@ -112,8 +85,57 @@ namespace SaraZarubica_LB_M151_V232
             CategoryRepository cRep = new CategoryRepository();
 
             Category c = getCategoryFromView();
+            c.UserId = getUserId();
 
-            cRep.Save(c);
+            if (validateCategory(c) == null)
+            {
+                cRep.Save(c);
+                Response.Redirect("~/CategoryList.aspx");
+            }
+            else
+            {
+                txtBoxError.Visible = true;
+                txtBoxError.Text = validateCategory(c);
+            }
+
+        }
+
+        private string validateCategory(Category c)
+        {
+            string errorMessage = null;
+            if (c.CategoryText == "")
+            {
+                errorMessage = "Geben Sie eine Kategorie ein.";
+            }
+            return errorMessage;
+        }
+
+        private int getUserId()
+        {
+            string userId = Session["UserId"]?.ToString();
+            if (!string.IsNullOrEmpty(userId))
+            {
+                return toInt(userId);
+            }
+            else { return -1; }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            CategoryRepository cRep = new CategoryRepository();
+            string strId = Request.QueryString["cId"];
+            if (!string.IsNullOrEmpty(strId)) // existiert schon
+            {
+                cId = Convert.ToInt32(strId);
+            }
+            cRep.Delete(cId.Value);
+
+            Response.Redirect("~/CategoryList.aspx");
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CategoryList.aspx");
         }
     }
 }

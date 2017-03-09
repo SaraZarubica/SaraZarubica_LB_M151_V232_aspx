@@ -10,7 +10,8 @@
         &nbsp;</p>
     <p>
         <asp:Label ID="Label1" runat="server" Text="Kategorie"></asp:Label>
-        <asp:DropDownList ID="ddListCategories" runat="server">
+        <asp:DropDownList ID="ddListCategories" CssClass="form-control"
+            runat="server">
         </asp:DropDownList>
     </p>
     <p>
@@ -28,7 +29,8 @@
     </p>
     <p>
         Richtigkeit:
-        <asp:DropDownList ID="ddA1" runat="server">
+        <asp:DropDownList ID="ddA1" CssClass="form-control"
+            runat="server">
             <asp:ListItem Value="0">Falsch</asp:ListItem>
             <asp:ListItem Value="1">Richtig</asp:ListItem>
         </asp:DropDownList>
@@ -42,7 +44,8 @@
     </p>
     <p>
         Richtigkeit:
-        <asp:DropDownList ID="ddA2" runat="server">
+        <asp:DropDownList ID="ddA2" CssClass="form-control"
+            runat="server" Width="73px">
             <asp:ListItem Value="0">Falsch</asp:ListItem>
             <asp:ListItem Value="1">Richtig</asp:ListItem>
         </asp:DropDownList>
@@ -56,7 +59,8 @@
     </p>
     <p>
         Richtigkeit:
-        <asp:DropDownList ID="ddA3" runat="server">
+        <asp:DropDownList ID="ddA3" CssClass="form-control"
+            runat="server">
             <asp:ListItem Value="0">Falsch</asp:ListItem>
             <asp:ListItem Value="1">Richtig</asp:ListItem>
         </asp:DropDownList>
@@ -70,18 +74,26 @@
     </p>
     <p>
         Richtigkeit:
-        <asp:DropDownList ID="ddA4" runat="server">
+        <asp:DropDownList ID="ddA4" CssClass="form-control"
+            runat="server">
             <asp:ListItem Value="0">Falsch</asp:ListItem>
             <asp:ListItem Value="1">Richtig</asp:ListItem>
         </asp:DropDownList>
     </p>
     <p>
-        <asp:TextBox ID="txtBoxError" TextMode="MultiLine" Visible="false"  runat="server" Enabled="False"></asp:TextBox>
+        <asp:TextBox ID="txtBoxError" CssClass="form-control input-lg"
+            TextMode="MultiLine" Visible="false"  runat="server" Enabled="False"></asp:TextBox>
     </p>
     <p>
         <asp:Button ID="btnSave"
              CssClass="btn btn-default" runat="server" Text="Speichern" OnClick="btnSave_Click" />
         <asp:Button ID="btnDelete" CssClass="btn btn-default" runat="server" Text="Löschen" OnClick="btnDelete_Click" Visible="False" />
+    </p>
+    <p>
+        &nbsp;</p>
+    <p>
+        <asp:Button ID="btnBack" CssClass="btn btn-default"
+            runat="server" Text="Abbrechen" OnClick="btnBack_Click" />
     </p>
     <p>
     </p>

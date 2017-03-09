@@ -19,7 +19,7 @@ namespace BusinessLayer.Repositories
             dbContext = new DataContext();
         }
 
-        public List<Question> GetQuestionFromCategory(int catId, List<int> playedQuestions)
+        public List<Question> GetQuestionsFromCategory(int catId, List<int> playedQuestions)
         {
             List<Question> q = dbContext.Questions.Where(x =>
             x.CategoryId == catId &&

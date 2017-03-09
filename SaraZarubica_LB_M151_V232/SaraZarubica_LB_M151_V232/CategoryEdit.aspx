@@ -9,11 +9,19 @@
         <asp:TextBox ID="txtBoxC" runat="server"></asp:TextBox>
     </p>
     <p>
-        <asp:Button ID="btnSave" runat="server" Text="Speichern" OnClick="btnSave_Click1" />
+        <asp:Button ID="btnSave" CssClass="btn btn-default"
+            runat="server" Text="Speichern" OnClick="btnSave_Click1" />
+        <asp:Button ID="btnDelete" CssClass="btn btn-default"
+             runat="server" OnClick="btnDelete_Click" Text="Löschen" Visible="False" />
     </p>
     <p>
+        <asp:TextBox ID="txtBoxError" CssClass="form-control input-lg"
+            runat="server" 
+            TextMode="MultiLine" Visible="False"></asp:TextBox>
     </p>
     <p>
+        <asp:Button ID="btnBack" CssClass="btn btn-default"
+            runat="server" Text="Abbrechen" OnClick="btnBack_Click" />
     </p>
     <p>
     </p>

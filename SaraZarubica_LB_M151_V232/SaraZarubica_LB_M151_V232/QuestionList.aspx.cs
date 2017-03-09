@@ -11,12 +11,12 @@ namespace SaraZarubica_LB_M151_V232
 {
     public partial class QuestionList : System.Web.UI.Page
     {
-        QuestionRepository qRep;
-        int userId;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            qRep = new QuestionRepository();
-            userId = 1;//Convert.ToInt32(Session["UserId"]);
+            redirectToLoginIfNecessary();
+            QuestionRepository qRep = new QuestionRepository();
+            int userId = getUserId();
             List<Question> list = qRep.GetAllQuestionsFromUserId(userId);
             gvQuestions.DataSource = list;
             gvQuestions.DataBind();
@@ -44,6 +44,40 @@ namespace SaraZarubica_LB_M151_V232
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvQuestions, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
+        }
+        private int toInt(string str)
+        {
+            if (!string.IsNullOrEmpty(str))
+            {
+                return Convert.ToInt32(str);
+            }
+            return -1;
+        }
+        private int getUserId()
+        {
+            string userId = Session["UserId"]?.ToString();
+            if (!string.IsNullOrEmpty(userId))
+            {
+                return toInt(userId);
+            }
+            else { return -1; }
+        }
+        private void redirectToLoginIfNecessary()
+        {
+            if (getUserId() < 1)
+            {
+                Response.Redirect("~/Account/Login.aspx");
+            }
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/QuestionEdit.aspx");
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AdminStartPage.aspx");
         }
     }
 }

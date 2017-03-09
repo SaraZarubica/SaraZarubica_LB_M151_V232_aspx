@@ -31,7 +31,11 @@ namespace BusinessLayer.Repositories
             dbContext.SaveChanges();
            
         }
-
+        public List<Answer> getAnswersFromQuestion(int qId)
+        {
+            List<Answer> answers = dbContext.Answers.Where(x => x.QuestionId == qId).ToList();
+            return answers;
+        }
         public bool checkAnswer(int id)
         {
            Answer answer = dbContext.Answers.Find(id);

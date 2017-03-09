@@ -10,33 +10,33 @@
 namespace SaraZarubica_LB_M151_V232 {
     
     
-    public partial class CategoryList {
+    public partial class AdminStartPage {
         
         /// <summary>
-        /// gvCategories control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCategories;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// btnAdd control.
+        /// btnQ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
+        protected global::System.Web.UI.WebControls.Button btnQ;
         
         /// <summary>
-        /// btnBack control.
+        /// btnC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack;
+        protected global::System.Web.UI.WebControls.Button btnC;
     }
 }

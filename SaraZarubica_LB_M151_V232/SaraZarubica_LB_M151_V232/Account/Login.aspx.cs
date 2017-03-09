@@ -35,7 +35,7 @@ namespace SaraZarubica_LB_M151_V232.Account
                 {
                     case SignInStatus.Success:
                         Session["UserId"] = u.Id;
-                        Response.Redirect("~/QuestionList.aspx");
+                        Response.Redirect("~/AdminStartPage.aspx");
                         break;
                     case SignInStatus.Failure:
                     default:

@@ -27,6 +27,10 @@ namespace BusinessLayer.Repositories
             return dbContext.Categories.Find(id);
         }
 
+        public int CountQuestionFromCategory(int id)
+        {
+            return dbContext.Questions.Where(x => x.CategoryId == id).Count();
+        }
         public void Save(Category c)
         {
             if (c.Id < 1)
@@ -41,12 +45,19 @@ namespace BusinessLayer.Repositories
             dbContext.SaveChanges();
         }
 
-        //public List<Category> GetAllCategoriesFromUserId(int userId)
-        //{
-        //    List<Category> c = dbContext.Categories.Where(x =>
-        //    x.UserId == userId).ToList();
+        public void Delete(int id)
+        {
+            Category dbCategory = dbContext.Categories.Where(x => x.Id == id).FirstOrDefault();
+            dbContext.Categories.Remove(dbCategory);
+            dbContext.SaveChanges();
+        }
 
-        //    return c;
-        //}
+        public List<Category> GetAllCategoriesFromUserId(int userId)
+        {
+            List<Category> c = dbContext.Categories.Where(x =>
+            x.UserId == userId).ToList();
+
+            return c;
+        }
     }
 }

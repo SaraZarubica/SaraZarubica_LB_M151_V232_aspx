@@ -10,33 +10,24 @@
 namespace SaraZarubica_LB_M151_V232 {
     
     
-    public partial class CategoryList {
+    public partial class PlayerLost {
         
         /// <summary>
-        /// gvCategories control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCategories;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// btnAdd control.
+        /// btnNewGame control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
-        
-        /// <summary>
-        /// btnBack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack;
+        protected global::System.Web.UI.WebControls.Button btnNewGame;
     }
 }
