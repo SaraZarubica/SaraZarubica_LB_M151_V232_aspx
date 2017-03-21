@@ -16,8 +16,16 @@ namespace DataLayer.Entities
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public string QuestionText { get; set; }
-  
-        
+        public int CorrectCount { get; set; }
+        public int WrongCount { get; set; }
+        public virtual int AnsweredCount
+        {
+            get
+            {
+                return this.WrongCount + this.CorrectCount;
+            }
+        }
+
         // Lazy loadig Properties
         public virtual User User { get; set; }
         public virtual Category Category { get; set; }

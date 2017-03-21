@@ -30,7 +30,7 @@ namespace SaraZarubica_LB_M151_V232
                 if (row.RowIndex == gvCategories.SelectedIndex)
                 {
                     string id = row.Attributes["cId"];
-                    Response.Redirect("CategoryEdit.aspx?cId=" + id);
+                    Response.Redirect("~/CategoryEdit.aspx?cId=" + id);
                 }
             }
         }

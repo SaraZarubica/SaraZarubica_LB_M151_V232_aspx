@@ -216,8 +216,12 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Game.aspx" />
+    <Content Include="HighscoreEdit.aspx" />
+    <Content Include="HighscoreList.aspx" />
     <Content Include="PlayerChooseCategory.aspx" />
+    <Content Include="PlayerHighScoreList.aspx" />
     <Content Include="PlayerLost.aspx" />
+    <Content Include="PlayerWinOrStop.aspx" />
     <Content Include="QuestionEdit.aspx" />
     <Content Include="QuestionList.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -436,6 +440,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HighscoreEdit.aspx.cs">
+      <DependentUpon>HighscoreEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HighscoreEdit.aspx.designer.cs">
+      <DependentUpon>HighscoreEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HighscoreList.aspx.cs">
+      <DependentUpon>HighscoreList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HighscoreList.aspx.designer.cs">
+      <DependentUpon>HighscoreList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="PlayerChooseCategory.aspx.cs">
       <DependentUpon>PlayerChooseCategory.aspx</DependentUpon>
@@ -444,12 +462,26 @@
     <Compile Include="PlayerChooseCategory.aspx.designer.cs">
       <DependentUpon>PlayerChooseCategory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PlayerHighScoreList.aspx.cs">
+      <DependentUpon>PlayerHighScoreList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlayerHighScoreList.aspx.designer.cs">
+      <DependentUpon>PlayerHighScoreList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PlayerLost.aspx.cs">
       <DependentUpon>PlayerLost.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PlayerLost.aspx.designer.cs">
       <DependentUpon>PlayerLost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerWinOrStop.aspx.cs">
+      <DependentUpon>PlayerWinOrStop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlayerWinOrStop.aspx.designer.cs">
+      <DependentUpon>PlayerWinOrStop.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionEdit.aspx.cs">

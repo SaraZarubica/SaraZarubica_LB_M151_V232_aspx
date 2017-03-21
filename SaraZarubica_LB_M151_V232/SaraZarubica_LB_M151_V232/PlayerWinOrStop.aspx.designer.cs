@@ -10,7 +10,16 @@
 namespace SaraZarubica_LB_M151_V232 {
     
     
-    public partial class AdminStartPage {
+    public partial class PlayerWinOrStop {
+        
+        /// <summary>
+        /// lblWinOrStop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWinOrStop;
         
         /// <summary>
         /// Label1 control.
@@ -22,30 +31,30 @@ namespace SaraZarubica_LB_M151_V232 {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// btnQ control.
+        /// txtBoxHName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnQ;
+        protected global::System.Web.UI.WebControls.TextBox txtBoxHName;
         
         /// <summary>
-        /// btnC control.
+        /// txtBoxError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnC;
+        protected global::System.Web.UI.WebControls.TextBox txtBoxError;
         
         /// <summary>
-        /// btnH control.
+        /// btnOk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnH;
+        protected global::System.Web.UI.WebControls.Button btnOk;
     }
 }

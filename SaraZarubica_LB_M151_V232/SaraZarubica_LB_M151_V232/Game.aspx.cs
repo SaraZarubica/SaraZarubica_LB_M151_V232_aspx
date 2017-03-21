@@ -16,6 +16,15 @@ namespace SaraZarubica_LB_M151_V232
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Joker5050"] != null)
+            {
+                btn50Joker.Enabled = false;
+            }
+            if (Session["StartTime"] == null)
+            {
+                Session["StartTime"] = DateTime.Now;
+            }
+
             if (!Page.IsPostBack) // first load.
             {
                 int cid = getCid();
@@ -30,12 +39,22 @@ namespace SaraZarubica_LB_M151_V232
         public void setView()
         {
             QuestionRepository qRep = new QuestionRepository();
+            int questionsSize = qRep.GetQuestionsSize();
             List<int> playedQuestions = getPlayedQuestions();
+            //TODO prüfen
+            if (questionsSize == playedQuestions.Count)
+            {
+                SetHighScore();
+                string win = "Sie haben 1 Mio. gewonnen!";
+                Response.Redirect("~/PlayerWinOrStop.aspx?winOrStop=" + win);
+            }
             List<Question> qList = qRep.GetQuestionsFromCategory(getCid(), playedQuestions);
             Question q = getRandomQuestion(qList);
+            hiddenQId.Value = q.Id.ToString();
+            lblATrue.Text = q.CorrectCount.ToString();
             playedQuestions.Add(q.Id);
             setQuestionsAndAnswersToView(q);
-            Session["PlayedQuestions"] = playedQuestions; ;
+            Session["PlayedQuestions"] = playedQuestions; ; //
         }
         private Question getRandomQuestion(List<Question> qList)
         {
@@ -61,7 +80,7 @@ namespace SaraZarubica_LB_M151_V232
             lblQ.Text = q.QuestionText;
             List<Answer> answers = q.Answers;
             answers.Shuffle();
-          
+            
             btnA1.Text = answers[0].AnswerText;
             btnA1.Attributes.Add("answerId", answers[0].Id.ToString());
 
@@ -73,6 +92,8 @@ namespace SaraZarubica_LB_M151_V232
 
             btnA4.Text = answers[3].AnswerText;
             btnA4.Attributes.Add("answerId", answers[3].Id.ToString());
+
+            lblPoints.Text = GetPoints().ToString();
 
         }
 
@@ -130,7 +151,7 @@ namespace SaraZarubica_LB_M151_V232
                 refreshAfterSeconds();
             }
             else
-            {
+            {   
                 btnA1.BackColor = System.Drawing.Color.Red;
                 refreshAfterSecondsWhenLost();
             }
@@ -138,31 +159,72 @@ namespace SaraZarubica_LB_M151_V232
 
         private void refreshAfterSeconds(int sec = 2)
         {
-            Response.AppendHeader("Refresh", sec + ";url=Game.aspx?cId=" + getCid());
+            Response.AppendHeader("Refresh", sec + ";url=Game.aspx?cId=" + getCid()); //komishes ~ ?
         }
 
         private void refreshAfterSecondsWhenLost(int sec = 2)
         {
-            Response.AppendHeader("Refresh", sec + ";url=PlayerLost?");
+            SetPoints();
+            Session["StartTime"] = null; //warum null?
+            Response.AppendHeader("Refresh", sec + ";url=PlayerLost?"); //komishes ~ ?
         }
 
         protected void btnStop_Click(object sender, EventArgs e)
         {
+            SetHighScore();
+            Session["StartTime"] = null;
+            string stop = "Sie haben ihren Gewinn mit nach Hause genommen!";
+            Response.Redirect("~/PlayerWinOrStop.aspx?winOrStop=" + stop);
+        }
 
+        private void SetHighScore()
+        {
+            Highscore score = new Highscore();
+            score.CategoryId = getCid();
+            score.GameDuration = (DateTime.Now - ((DateTime)Session["StartTime"])).Seconds;
+            score.Points = GetPoints();
         }
 
         protected void btn50Joker_Click(object sender, EventArgs e)
         {
+            Session["Joker5050"] = true;
             btn50Joker.Enabled = false;
-            AnswerRepository aRep = new AnswerRepository();
-            //List <Answer> answers  = aRep.getAnswersFromQuestion();
+            set5050Answers();
         }
 
         private bool isAnswerCorrect(Button btn, AnswerRepository aRep)
         {
-            return aRep.checkAnswer(Convert.ToInt32(btn.Attributes["answerId"]));
+            bool correct = aRep.checkAnswer(Convert.ToInt32(btn.Attributes["answerId"]));
+            if (correct) SetPoints();
+            CountQuestionStatisticsOneUp(correct);
+            return correct;
         }
 
+        private void SetPoints()
+        {
+            if(Session["PlayedPoints"] == null)
+            {
+                Session["PlayedPoints"] = 30;
+            }
+            else
+            {
+                Session["PlayedPoints"] = GetPoints() + 30;
+            }
+        }
+
+        private int GetPoints() //Gewinn abfangen
+        {
+            if (Session["PlayedPoints"] != null)
+            {
+               return (int)Session["PlayedPoints"];
+            }
+            return 0;
+        }
+        private void CountQuestionStatisticsOneUp(bool correct)
+        {
+            QuestionRepository qRep = new QuestionRepository();
+             qRep.SetQuestionStatisticsOneUp(correct, Convert.ToInt32(hiddenQId.Value));
+        }
 
         private List<int> getPlayedQuestions()
         {
@@ -181,6 +243,32 @@ namespace SaraZarubica_LB_M151_V232
                 Response.Redirect("~/PlayerChooseCategory.aspx");
             }
             return Convert.ToInt32(strId);
+        }
+        
+        private void set5050Answers()
+        {
+            List<Button> buttons = new List<Button>();
+            buttons.Add(btnA1);
+            buttons.Add(btnA2);
+            buttons.Add(btnA3);
+            buttons.Add(btnA4);
+
+            int buttonListCount = 4;
+            AnswerRepository aRep = new AnswerRepository();
+            for (int i = 0; 0 < buttonListCount; i++)
+            {
+                if(isAnswerCorrect(buttons[i], aRep))
+                {
+                    buttons.Remove(buttons[i]);
+                    buttonListCount = 0;
+                }
+            }
+
+            buttons.Shuffle();
+
+            buttons[1].Visible = false;
+            buttons[2].Visible = false;
+
         }
     }
 }

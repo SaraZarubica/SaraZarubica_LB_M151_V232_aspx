@@ -12,12 +12,20 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Button ID="btnA2" CssClass="btn btn-default"
         runat="server" OnClick="btnA2_Click" Text="Antwort" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label1" runat="server" Text="Punkte:"></asp:Label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblPoints" runat="server" Text="0"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <p>
         <asp:Button ID="btnA3" CssClass="btn btn-default"
             runat="server" OnClick="btnA3_Click" Text="Antwort" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnA4" CssClass="btn btn-default"
             runat="server" OnClick="btnA4_Click" Text="Antwort" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label2" runat="server" Text="Frage wurde richtig beantwortet zu:"></asp:Label>
+&nbsp;&nbsp;
+    <asp:Label ID="lblATrue" runat="server" Text="0"></asp:Label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </p>
     <p>
         <asp:Button ID="btnStop" CssClass="btn btn-default"
@@ -33,5 +41,7 @@
     </p>
     <p>
         <asp:HiddenField ID="hiddenA4" runat="server" />
+        <asp:HiddenField ID="hiddenQId" runat="server" />
+        <asp:HiddenField ID="hidden5050Set" runat="server" />
     </p>
 </asp:Content>

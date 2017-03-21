@@ -27,6 +27,12 @@ namespace BusinessLayer.Repositories
 
             return q;
         }
+
+        public int GetQuestionsSize()
+        {
+            var questionsSize = dbContext.Questions.Count();
+            return questionsSize;
+        }
         public List<Question> GetAllQuestionsFromUserId(int userId)
         {
             List<Question> q = dbContext.Questions.Where(x =>
@@ -62,7 +68,20 @@ namespace BusinessLayer.Repositories
             dbContext.Questions.Remove(dbQuestion);
             dbContext.SaveChanges();
         }
-            
+
+        public void SetQuestionStatisticsOneUp(bool rightAnswered, int id)
+        {
+            Question question = dbContext.Questions.Find(id);
+            if (rightAnswered)
+            {
+                question.CorrectCount += 1;
+            }
+            else
+            {
+                question.WrongCount += 1;
+            }
+        }
+
     }
     
 }

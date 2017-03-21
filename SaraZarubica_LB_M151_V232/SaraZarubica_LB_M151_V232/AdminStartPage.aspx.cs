@@ -47,5 +47,10 @@ namespace SaraZarubica_LB_M151_V232
         {
             Response.Redirect("~/CategoryList.aspx");
         }
+
+        protected void btnH_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/HighscoreList.aspx");
+        }
     }
 }

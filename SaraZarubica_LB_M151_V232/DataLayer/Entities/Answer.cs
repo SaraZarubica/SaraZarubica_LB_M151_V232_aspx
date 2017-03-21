@@ -19,6 +19,8 @@ namespace DataLayer.Entities
         public bool Correctness { get; set; }
 
 
+       
+
         // Lazy loadig Properties
         public virtual Question Question { get; set; }
         public virtual User User { get; set; }

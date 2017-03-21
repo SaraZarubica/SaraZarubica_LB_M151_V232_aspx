@@ -11,6 +11,7 @@ namespace SaraZarubica_LB_M151_V232
 {
     public partial class PlayerChooseCategory : System.Web.UI.Page
     {
+        public const int minCountQuestions = 2;
         protected void Page_Load(object sender, EventArgs e)
         {
             setView();
@@ -23,7 +24,7 @@ namespace SaraZarubica_LB_M151_V232
 
             foreach (Category ci in categories)
             {
-                if (cRep.CountQuestionFromCategory(ci.Id) >= 2) //15
+                if (cRep.CountQuestionFromCategory(ci.Id) >= minCountQuestions)
                 {
                     ListItem item = new ListItem();
                     item.Text = ci.CategoryText;

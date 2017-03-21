@@ -5,7 +5,7 @@
         <asp:Label ID="Label1" runat="server" Text="Wähle eine Spielkategorie"></asp:Label>
     </p>
     <p>
-        <asp:DropDownList ID="ddC" CssClass="form-control"
+        <asp:DropDownList ID="ddC" CssClass="form-control" 
             runat="server">
         </asp:DropDownList>
     </p>

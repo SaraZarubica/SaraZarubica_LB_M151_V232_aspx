@@ -30,7 +30,7 @@ namespace SaraZarubica_LB_M151_V232
                 if (row.RowIndex == gvQuestions.SelectedIndex)
                 {
                     string id = row.Attributes["qId"];
-                    Response.Redirect("QuestionEdit.aspx?qId=" + id);
+                    Response.Redirect("~/QuestionEdit.aspx?qId=" + id);
                 }
             }
         }

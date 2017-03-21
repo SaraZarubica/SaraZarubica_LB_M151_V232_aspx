@@ -162,7 +162,7 @@ button,
 input,
 select,
 textarea {
-  margin: 0;
+  margin: 0px 0 0 0;
   font-family: inherit;
   font-size: 100%;
 }
@@ -1834,7 +1834,6 @@ textarea.input-sm {
 }
 
 .input-lg {
-  height: 45px;
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.33;
@@ -1998,7 +1997,6 @@ textarea.input-lg {
 .btn {
   display: inline-block;
   padding: 6px 12px;
-  margin-bottom: 0;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.428571429;

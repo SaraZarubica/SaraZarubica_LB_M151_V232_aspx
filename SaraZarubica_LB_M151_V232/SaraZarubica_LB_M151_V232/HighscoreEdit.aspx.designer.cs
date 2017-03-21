@@ -10,43 +10,7 @@
 namespace SaraZarubica_LB_M151_V232 {
     
     
-    public partial class Game {
-        
-        /// <summary>
-        /// lblQ control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQ;
-        
-        /// <summary>
-        /// btn50Joker control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn50Joker;
-        
-        /// <summary>
-        /// btnA1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnA1;
-        
-        /// <summary>
-        /// btnA2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnA2;
+    public partial class HighscoreEdit {
         
         /// <summary>
         /// Label1 control.
@@ -58,31 +22,13 @@ namespace SaraZarubica_LB_M151_V232 {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// lblPoints control.
+        /// lblRank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPoints;
-        
-        /// <summary>
-        /// btnA3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnA3;
-        
-        /// <summary>
-        /// btnA4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnA4;
+        protected global::System.Web.UI.WebControls.Label lblRank;
         
         /// <summary>
         /// Label2 control.
@@ -94,84 +40,120 @@ namespace SaraZarubica_LB_M151_V232 {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// lblATrue control.
+        /// lblWeightedPoints control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblATrue;
+        protected global::System.Web.UI.WebControls.Label lblWeightedPoints;
         
         /// <summary>
-        /// btnStop control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnStop;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// hiddenA control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenA;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// hiddenA1 control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenA1;
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// hiddenA2 control.
+        /// lblMomentOfGame control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenA2;
+        protected global::System.Web.UI.WebControls.Label lblMomentOfGame;
         
         /// <summary>
-        /// hiddenA3 control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenA3;
+        protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// hiddenA4 control.
+        /// lblPoints control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenA4;
+        protected global::System.Web.UI.WebControls.Label lblPoints;
         
         /// <summary>
-        /// hiddenQId control.
+        /// Label6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenQId;
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// hidden5050Set control.
+        /// lblDurationGame control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidden5050Set;
+        protected global::System.Web.UI.WebControls.Label lblDurationGame;
+        
+        /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+        
+        /// <summary>
+        /// lblCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCategories;
+        
+        /// <summary>
+        /// btnDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDelete;
+        
+        /// <summary>
+        /// btnBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBack;
     }
 }
