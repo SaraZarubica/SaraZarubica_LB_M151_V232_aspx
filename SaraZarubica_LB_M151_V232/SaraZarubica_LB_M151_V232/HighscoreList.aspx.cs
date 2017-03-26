@@ -1,4 +1,5 @@
-﻿using DataLayer.Entities;
+﻿using BusinessLayer.Repositories;
+using DataLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,14 @@ namespace SaraZarubica_LB_M151_V232
 {
     public partial class HighscoreList : System.Web.UI.Page
     {
+        int userId;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            redirectToLoginIfNecessary();
+            HighScoreRepository hRep = new HighScoreRepository();
+            List<Highscore> list = hRep.GetAllHighscores();
+            gvHighscore.DataSource = list;
+            gvHighscore.DataBind();
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
@@ -41,6 +47,30 @@ namespace SaraZarubica_LB_M151_V232
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvHighscore, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
             }
+        }
+        private void redirectToLoginIfNecessary()
+        {
+            if (getUserId() < 1)
+            {
+                Response.Redirect("~/Account/Login.aspx");
+            }
+        }
+        private int getUserId()
+        {
+            string userId = Session["UserId"]?.ToString();
+            if (!string.IsNullOrEmpty(userId))
+            {
+                return toInt(userId);
+            }
+            else { return -1; }
+        }
+        private int toInt(string str)
+        {
+            if (!string.IsNullOrEmpty(str))
+            {
+                return Convert.ToInt32(str);
+            }
+            return -1;
         }
     }
 }

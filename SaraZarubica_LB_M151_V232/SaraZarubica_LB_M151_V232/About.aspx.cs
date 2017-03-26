@@ -11,7 +11,6 @@ namespace SaraZarubica_LB_M151_V232
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label1.Text = "tflflf";
         }
     }
 }

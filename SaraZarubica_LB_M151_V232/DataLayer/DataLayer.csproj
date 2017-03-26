@@ -55,6 +55,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\GameStatus.cs" />
     <Compile Include="Entities\Highscore.cs" />
+    <Compile Include="Entities\PlayedCategories.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

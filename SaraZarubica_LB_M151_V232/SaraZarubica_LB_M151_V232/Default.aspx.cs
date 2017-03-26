@@ -13,5 +13,10 @@ namespace SaraZarubica_LB_M151_V232
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/PlayerChooseCategory.aspx");
+        }
     }
 }

@@ -5,9 +5,8 @@
         <asp:Label ID="Label1" runat="server" Text="Wähle eine Spielkategorie"></asp:Label>
     </p>
     <p>
-        <asp:DropDownList ID="ddC" CssClass="form-control" 
-            runat="server">
-        </asp:DropDownList>
+        <asp:ListBox ID="lboxC" runat="server" SelectionMode="Multiple">
+        </asp:ListBox>
     </p>
     <asp:Button ID="btnStart" CssClass="btn btn-default"
         runat="server" Text="Spiel starten" OnClick="btnStart_Click" />

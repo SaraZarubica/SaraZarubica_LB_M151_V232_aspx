@@ -20,7 +20,6 @@ namespace SaraZarubica_LB_M151_V232
             List<Question> list = qRep.GetAllQuestionsFromUserId(userId);
             gvQuestions.DataSource = list;
             gvQuestions.DataBind();
-
         }
 
         protected void gvQuestions_SelectedIndexChanged(object sender, EventArgs e)

@@ -12,12 +12,11 @@ namespace SaraZarubica_LB_M151_V232
     public partial class CategoryList : System.Web.UI.Page
     {
         CategoryRepository cRep;
-        int userId;
         protected void Page_Load(object sender, EventArgs e)
         {
             redirectToLoginIfNecessary();
             cRep = new CategoryRepository();
-            userId = 1;//Convert.ToInt32(Session["UserId"]);
+            int userId = getUserId();
             List<Category> list = cRep.GetAllCategoriesFromUserId(userId);
             gvCategories.DataSource = list;
             gvCategories.DataBind();

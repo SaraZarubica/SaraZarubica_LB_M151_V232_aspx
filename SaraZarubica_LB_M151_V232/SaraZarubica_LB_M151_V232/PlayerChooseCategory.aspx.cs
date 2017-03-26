@@ -11,7 +11,7 @@ namespace SaraZarubica_LB_M151_V232
 {
     public partial class PlayerChooseCategory : System.Web.UI.Page
     {
-        public const int minCountQuestions = 2;
+        public const int minCountQuestions = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             setView();
@@ -29,24 +29,33 @@ namespace SaraZarubica_LB_M151_V232
                     ListItem item = new ListItem();
                     item.Text = ci.CategoryText;
                     item.Value = ci.Id.ToString();
-                    ddC.Items.Add(item);
+                    lboxC.Items.Add(item);
                 }
             }
 
-            if (ddC.Items.Count < 1)
+            if (lboxC.Items.Count < 1)
             {
                 ListItem item = new ListItem();
                 item.Text = "Keine Kategorien >= 15 Fragen!, Admin benachrichtigen";
                 item.Value = (-1).ToString();
-                ddC.Items.Add(item);
+                lboxC.Items.Add(item);
             }
         }
         protected void btnStart_Click(object sender, EventArgs e)
         {
-            string id = ddC.SelectedValue;
-            if (!string.IsNullOrEmpty(id) && Convert.ToInt32(id) > 0)
+            List<int> selectedCats = new List<int>();
+            foreach(ListItem item in lboxC.Items)
             {
-                Response.Redirect("~/Game.aspx?cId=" + id);
+                if (item.Selected)
+                {
+                    int id = Convert.ToInt32(item.Value);
+                    if(id>0) selectedCats.Add(id);
+                }
+            }
+            if (selectedCats.Count() > 0)
+            {
+                string ids = string.Join(",", selectedCats.Select(n => n.ToString()).ToArray());
+                Response.Redirect("~/Game.aspx?cIds=" + ids);
             }
         }
     }

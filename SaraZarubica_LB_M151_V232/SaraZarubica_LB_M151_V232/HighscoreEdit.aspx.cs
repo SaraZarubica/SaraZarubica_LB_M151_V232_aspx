@@ -34,32 +34,16 @@ namespace SaraZarubica_LB_M151_V232
         {
             if (h != null)
             {
-                lblRank.Text = getRank(h).ToString();
-                lblWeightedPoints.Text = getWeightedPoints(h).ToString();
+                //lblRank.Text = h.
+                lblWeightedPoints.Text = h.WeightedPoints.ToString();
                 lblName.Text = h.Name;
                 lblMomentOfGame.Text = h.MomentOfGame.ToString();
                 lblPoints.Text = h.Points.ToString();
-                lblDurationGame.Text = h.GameDuration.ToString();
-                lblCategories.Text = getCategoriesAsString(h);
+                lblDurationGame.Text = h.GameDuration.ToString() + " Sekunden";
+                lblCategories.Text = h.PlayedCategories.CategoryText;
 
 
             }
-        }
-
-        protected int getRank(Highscore h)
-        {
-            //Wie Rang berechnen? hmmm
-            return 0;
-        }
-        protected int getWeightedPoints(Highscore h)
-        {
-            var weightedPoints = (h.Points / h.GameDuration);
-            return weightedPoints;
-        }
-        protected string getCategoriesAsString(Highscore h)
-        {
-            //Wie mehrere Kategorien
-            return null;
         }
         protected void loadAndSetHighscore(int id)
         {

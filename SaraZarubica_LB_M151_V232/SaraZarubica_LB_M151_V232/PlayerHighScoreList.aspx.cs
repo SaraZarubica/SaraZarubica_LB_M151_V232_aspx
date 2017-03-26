@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLayer.Repositories;
+using DataLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,21 @@ namespace SaraZarubica_LB_M151_V232
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            HighScoreRepository hRep = new HighScoreRepository();
+            List<Highscore> list = hRep.GetAllHighscores();
+            gvHighscore.DataSource = list;
+            gvHighscore.DataBind();
+        }
 
+        protected void gvHighscore_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Highscore h = (Highscore)e.Row.DataItem;
+                e.Row.Attributes["hId"] = h.Id.ToString();
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvHighscore, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to select this row.";
+            }
         }
     }
 }

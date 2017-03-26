@@ -19,18 +19,18 @@ namespace BusinessLayer.Repositories
             dbContext = new DataContext();
         }
 
-        public List<Question> GetQuestionsFromCategory(int catId, List<int> playedQuestions)
+        public List<Question> GetQuestionsFromCategories(List<int> catIds, List<int> playedQuestions)
         {
             List<Question> q = dbContext.Questions.Where(x =>
-            x.CategoryId == catId &&
+            catIds.Contains(x.CategoryId)  &&
             !playedQuestions.Contains(x.Id)).ToList();
 
             return q;
         }
 
-        public int GetQuestionsSize()
+        public int GetQuestionsSize(List<int> ids)
         {
-            var questionsSize = dbContext.Questions.Count();
+            var questionsSize = dbContext.Questions.Where(x => ids.Contains(x.CategoryId)).Count();
             return questionsSize;
         }
         public List<Question> GetAllQuestionsFromUserId(int userId)
@@ -80,6 +80,7 @@ namespace BusinessLayer.Repositories
             {
                 question.WrongCount += 1;
             }
+            dbContext.SaveChanges();
         }
 
     }

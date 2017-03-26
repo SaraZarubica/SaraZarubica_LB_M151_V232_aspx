@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLayer.Repositories;
+using DataLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,7 +20,11 @@ namespace SaraZarubica_LB_M151_V232
         {
             if (validateName() == null)
             {
-                Response.Redirect("~/PlayerHighScoreList.aspx");
+                Highscore h = getHighscore(getHid());
+                h.Name = txtBoxHName.Text;
+                HighScoreRepository hRep = new HighScoreRepository();
+                hRep.Save(h);
+                Response.Redirect("~/PlayerHighScoreList.aspx?hId=" + getHid());
             }
 
             txtBoxError.Visible = true;
@@ -33,6 +39,19 @@ namespace SaraZarubica_LB_M151_V232
                 errorMessage = "Geben Sie Ihren Namen ein.";
             }
             return errorMessage;
+        }
+
+        private int getHid()
+        {
+            string strId = Request.QueryString["highscoreId"];
+            return Convert.ToInt32(strId);
+        }
+
+        protected Highscore getHighscore(int id)
+        {
+            HighScoreRepository hRep = new HighScoreRepository();
+            Highscore h = hRep.getHighscoreById(id);
+            return h;
         }
     }
 }

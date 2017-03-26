@@ -22,13 +22,13 @@ namespace SaraZarubica_LB_M151_V232 {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// ddC control.
+        /// lboxC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddC;
+        protected global::System.Web.UI.WebControls.ListBox lboxC;
         
         /// <summary>
         /// btnStart control.

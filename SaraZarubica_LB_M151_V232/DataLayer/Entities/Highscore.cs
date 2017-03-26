@@ -11,24 +11,25 @@ namespace DataLayer.Entities
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("Category")]
-        public int CategoryId { get; set; }
         public string Name { get; set; }
         public int Points { get; set; }
         public int GameDuration { get; set; } // as sec
         public DateTime MomentOfGame { get; set; }
-                                            
 
-        public virtual int WeightedPoints
+        private double weightedPoints;
+        public double WeightedPoints 
         {
             get
             {
-                return Points / GameDuration;
+                return weightedPoints;
+            }
+            set
+            {
+                weightedPoints = ((double)Points) / ((double)GameDuration);
             }
         }
 
         // Lazy loadig Properties
-        public virtual Category Category { get; set; }
-       
+        public virtual List<PlayedCategories> PlayedCategories { get; set; }
     }
 }
