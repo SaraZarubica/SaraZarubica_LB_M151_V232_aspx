@@ -13,7 +13,7 @@ namespace SaraZarubica_LB_M151_V232
 {
     public partial class Game : System.Web.UI.Page
     {
-
+        private const int questionsCountGame = 2;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Joker5050"] != null)
@@ -32,27 +32,43 @@ namespace SaraZarubica_LB_M151_V232
                 {
                     Session["PlayedQuestions"] = new List<int>();
                 }
+
+                int questionsAnswered = getQuestionsAnswered();
+                if (questionsAnswered == 0)
+                {
+                    Session["QuestionsAnswered"] = new Int32();
+                }
                 setView();
             }
         }
         public void setView()
         {
             QuestionRepository qRep = new QuestionRepository();
-            int questionsSize = qRep.GetQuestionsSize(getCids());
             List<int> playedQuestions = getPlayedQuestions();
-            if (questionsSize == playedQuestions.Count) // wvl er richtig beantwortet hat => wenn diese weniger sind als played questions abbruch!!
+            int answeredQuestionsCount = getQuestionsAnswered();
+            if (answeredQuestionsCount == questionsCountGame)
             {
                 string win = "Sie haben 1 Mio. gewonnen!";
                 SetHighScore();
-                Session["PlayedPoints"] = 0;
-                Session["PlayedQuestions"] = 0;
+                Session["PlayedPoints"] = null;
+                Session["PlayedQuestions"] = null;
+                Session["QuestionsAnswered"] = null;
                 Session["StartTime"] = null;
                 Response.Redirect(String.Format("~/PlayerWinOrStop.aspx?winOrStop={0}&highscoreId={1}", win, Session["HighscoreId"].ToString()));
+                Session["HighscoreId"] = null;
+
             }
             List<Question> qList = qRep.GetQuestionsFromCategories(getCids(), playedQuestions);
             Question q = getRandomQuestion(qList);
             hiddenQId.Value = q.Id.ToString();
-            lblATrue.Text = (((Convert.ToDouble(q.CorrectCount) / Convert.ToDouble(q.AnsweredCount)) * 100) + "%").ToString();
+            if (q.AnsweredCount > 0)
+            {
+                lblATrue.Text = (((Convert.ToDouble(q.CorrectCount) / Convert.ToDouble(q.AnsweredCount)) * 100) + "%").ToString();
+            }
+            else
+            {
+                lblATrue.Text = "Noch nie beantwortet.";
+            }
             playedQuestions.Add(q.Id);
             setQuestionsAndAnswersToView(q);
             Session["PlayedQuestions"] = playedQuestions;
@@ -104,6 +120,7 @@ namespace SaraZarubica_LB_M151_V232
             AnswerRepository aRep = new AnswerRepository();
             if (isAnswerCorrect(btnA1, aRep))
             {
+                Session["QuestionsAnswered"] = getQuestionsAnswered() + 1;
                 btnA1.BackColor = System.Drawing.Color.Green;
                 refreshAfterSeconds();
             }else
@@ -119,6 +136,7 @@ namespace SaraZarubica_LB_M151_V232
             AnswerRepository aRep = new AnswerRepository();
             if (isAnswerCorrect(btnA2, aRep))
             {
+                Session["QuestionsAnswered"] = getQuestionsAnswered() + 1;
                 btnA2.BackColor = System.Drawing.Color.Green;
                 refreshAfterSeconds();
             }
@@ -135,6 +153,7 @@ namespace SaraZarubica_LB_M151_V232
             AnswerRepository aRep = new AnswerRepository();
             if (isAnswerCorrect(btnA3, aRep))
             {
+                Session["QuestionsAnswered"] = getQuestionsAnswered() + 1;
                 btnA3.BackColor = System.Drawing.Color.Green;
                 refreshAfterSeconds();
             }
@@ -151,6 +170,7 @@ namespace SaraZarubica_LB_M151_V232
             AnswerRepository aRep = new AnswerRepository();
             if (isAnswerCorrect(btnA4, aRep))
             {
+                Session["QuestionsAnswered"] = getQuestionsAnswered() + 1;
                 btnA4.BackColor = System.Drawing.Color.Green;
                 refreshAfterSeconds();
             }
@@ -170,9 +190,11 @@ namespace SaraZarubica_LB_M151_V232
 
         private void refreshAfterSecondsWhenLost(int sec = 2)
         {
-            Session["PlayedPoints"] = 0;
-            Session["PlayedQuestions"] = 0;
+            Session["QuestionsAnswered"] = null;
+            Session["PlayedPoints"] = null;
+            Session["PlayedQuestions"] = null;
             Session["StartTime"] = null;
+            Session["HighscoreId"] = null;
             Response.AppendHeader("Refresh", sec + ";url=PlayerLost?"); //komishes ~ ?
         }
 
@@ -183,6 +205,9 @@ namespace SaraZarubica_LB_M151_V232
             string stop = "Sie haben ihren Gewinn mit nach Hause genommen!";
             Response.Redirect(String.Format("~/PlayerWinOrStop.aspx?winOrStop={0}&highscoreId={1}", stop, Session["HighscoreId"].ToString()));
             Session["HighscoreId"] = null;
+            Session["QuestionsAnswered"] = null;
+            Session["PlayedPoints"] = null;
+            Session["PlayedQuestions"] = null;
         }
 
         protected void SetHighScore()
@@ -249,6 +274,14 @@ namespace SaraZarubica_LB_M151_V232
                 return Session["PlayedQuestions"] as List<int>;
             }
             return null;
+        }
+        private int getQuestionsAnswered()
+        {
+            if (Session["QuestionsAnswered"] != null)
+            {
+                return Convert.ToInt32(Session["QuestionsAnswered"]);
+            }
+            return 0;
         }
 
         private List<int> getCids()

@@ -40,9 +40,12 @@ namespace SaraZarubica_LB_M151_V232
                 lblMomentOfGame.Text = h.MomentOfGame.ToString();
                 lblPoints.Text = h.Points.ToString();
                 lblDurationGame.Text = h.GameDuration.ToString() + " Sekunden";
-                lblCategories.Text = h.PlayedCategories.CategoryText;
-
-
+                CategoryRepository catRep = new CategoryRepository();
+                for (int i = 0; i < h.PlayedCategories.Count; i++)
+                {
+                    Category cat = catRep.getCategoryById(h.PlayedCategories[i].CategoryId);
+                    lblCategories.Text += cat.CategoryText;
+                }
             }
         }
         protected void loadAndSetHighscore(int id)

@@ -402,6 +402,7 @@ hr {
 
 p {
   margin: 0 0 10px;
+    height: 33px;
 }
 
 .lead {
@@ -1463,6 +1464,7 @@ th {
 
 .table-bordered {
   border: 1px solid #dddddd;
+    margin-top: 0px;
 }
 
 .table-bordered > thead > tr > th,

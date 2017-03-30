@@ -15,7 +15,9 @@ namespace SaraZarubica_LB_M151_V232
         {
             HighScoreRepository hRep = new HighScoreRepository();
             List<Highscore> list = hRep.GetAllHighscores();
-            gvHighscore.DataSource = list;
+            List<Highscore> sortedList = list.OrderBy(x => x.WeightedPoints).ToList();
+
+            gvHighscore.DataSource = sortedList;
             gvHighscore.DataBind();
         }
 

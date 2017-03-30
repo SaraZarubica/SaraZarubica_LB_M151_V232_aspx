@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Repositories;
 using DataLayer.Entities;
+using SaraZarubica_LB_M151_V232.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,22 @@ namespace SaraZarubica_LB_M151_V232
 {
     public partial class HighscoreList : System.Web.UI.Page
     {
-        int userId;
         protected void Page_Load(object sender, EventArgs e)
         {
             redirectToLoginIfNecessary();
             HighScoreRepository hRep = new HighScoreRepository();
             List<Highscore> list = hRep.GetAllHighscores();
-            gvHighscore.DataSource = list;
+            CategoryRepository catRep = new CategoryRepository();
+            int ranking = 1;
+            List<VmHighScoreGvItem> vmList = new List<VmHighScoreGvItem>();
+            foreach(var h in list)
+            {
+                List<int> catIds = h.PlayedCategories.Select(x => x.CategoryId).ToList();
+                vmList.Add(ToGvItem(h, catRep.GetCategoryByIds(catIds), ranking));
+                ranking++; 
+            }
+
+            gvHighscore.DataSource = vmList;
             gvHighscore.DataBind();
         }
 
@@ -42,7 +52,7 @@ namespace SaraZarubica_LB_M151_V232
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Highscore h = (Highscore)e.Row.DataItem;
+                VmHighScoreGvItem h = (VmHighScoreGvItem)e.Row.DataItem;
                 e.Row.Attributes["hId"] = h.Id.ToString();
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvHighscore, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
@@ -71,6 +81,20 @@ namespace SaraZarubica_LB_M151_V232
                 return Convert.ToInt32(str);
             }
             return -1;
+        }
+
+        private VmHighScoreGvItem ToGvItem(Highscore h, List<Category> cs, int ranking)
+        {
+            VmHighScoreGvItem vm = new VmHighScoreGvItem();
+            vm.CategoryName = string.Join(";",cs.Select(x => x.CategoryText));
+            vm.GameDuration = h.GameDuration;
+            vm.MomentOfGame = h.MomentOfGame;
+            vm.Name = h.Name;
+            vm.Points = h.Points;
+            vm.Rang = ranking;
+            vm.Id = h.Id;
+            vm.WeightedPoints = h.WeightedPoints;
+            return vm;
         }
     }
 }

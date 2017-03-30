@@ -11,6 +11,12 @@
     <p>
     </p>
     <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
         <asp:Button ID="btnAdd" CssClass="btn btn-default" runat="server" OnClick="btnAdd_Click" Text="Kategorie hinzufügen" />
     </p>
     <p>
@@ -18,7 +24,5 @@
     <p>
         <asp:Button ID="btnBack" CssClass="btn btn-default"
              runat="server" Text="Zurück" OnClick="btnBack_Click" />
-    </p>
-    <p>
     </p>
 </asp:Content>

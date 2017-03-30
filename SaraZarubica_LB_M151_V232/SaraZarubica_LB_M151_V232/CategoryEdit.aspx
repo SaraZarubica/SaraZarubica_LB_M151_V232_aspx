@@ -6,7 +6,8 @@
     </p>
     <p>
         <asp:Label ID="Label1" runat="server" Text="Kategorie"></asp:Label>
-        <asp:TextBox ID="txtBoxC" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtBoxC" CssClass="form-control input-lg"
+            runat="server"></asp:TextBox>
     </p>
     <p>
         <asp:Button ID="btnSave" CssClass="btn btn-default"

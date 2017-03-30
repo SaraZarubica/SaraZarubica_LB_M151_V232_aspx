@@ -44,6 +44,7 @@ namespace BusinessLayer.Repositories
         public void Delete(int id)
         {
             Highscore dbHighscore = dbContext.Highscores.Where(x => x.Id == id).FirstOrDefault();
+            RemovePlayedCategories(dbHighscore.PlayedCategories);
             dbContext.Highscores.Remove(dbHighscore);
             dbContext.SaveChanges();
         }
@@ -54,5 +55,13 @@ namespace BusinessLayer.Repositories
             return hs;
         }
 
+        public void RemovePlayedCategories(List<PlayedCategories> playedC)
+        {
+            for (int i = 0; i < playedC.Count; i++)
+            {
+                dbContext.PlayedCategories.Remove(playedC[i]);
+            }
+            
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace SaraZarubica_LB_M151_V232
                     int cId = Convert.ToInt32(strId);
                     loadAndSetCategory(cId);
                 }
-                else // neue Kategorie
+                else
                 {
                     setView(null);
                 }
@@ -58,7 +58,6 @@ namespace SaraZarubica_LB_M151_V232
             Category c = new Category();
             c.Id = toInt(HiddenCId.Value);
             c.CategoryText = txtBoxC.Text;
-            //c.UserId = getUserId();
             return c;
         }
         

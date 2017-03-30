@@ -14,11 +14,9 @@ namespace DataLayer.Entities
         public int Id { get; set; }
         [ForeignKey("HighScore")]
         public int HighScoreId { get; set; }
-        [ForeignKey("Category")]
         public int CategoryId { get; set; }
 
         // virtuals
-        public Category Category { get; set; }
         public Highscore HighScore { get; set; }
     }
 }

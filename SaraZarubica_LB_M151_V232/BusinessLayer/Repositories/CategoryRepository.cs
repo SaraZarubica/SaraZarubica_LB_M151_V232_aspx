@@ -45,6 +45,11 @@ namespace BusinessLayer.Repositories
             dbContext.SaveChanges();
         }
 
+        public List<Category> GetCategoryByIds(List<int> catIds)
+        {
+            return dbContext.Categories.Where(x => catIds.Contains(x.Id)).ToList();
+        }
+
         public void Delete(int id)
         {
             Category dbCategory = dbContext.Categories.Where(x => x.Id == id).FirstOrDefault();
