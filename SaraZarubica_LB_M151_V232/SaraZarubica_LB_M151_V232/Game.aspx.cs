@@ -54,6 +54,7 @@ namespace SaraZarubica_LB_M151_V232
                 Session["PlayedQuestions"] = null;
                 Session["QuestionsAnswered"] = null;
                 Session["StartTime"] = null;
+                Session["Joker5050"] = null;
                 Response.Redirect(String.Format("~/PlayerWinOrStop.aspx?winOrStop={0}&highscoreId={1}", win, Session["HighscoreId"].ToString()));
                 Session["HighscoreId"] = null;
 
@@ -202,12 +203,13 @@ namespace SaraZarubica_LB_M151_V232
         {
             SetHighScore();
             Session["StartTime"] = null;
-            string stop = "Sie haben ihren Gewinn mit nach Hause genommen!";
-            Response.Redirect(String.Format("~/PlayerWinOrStop.aspx?winOrStop={0}&highscoreId={1}", stop, Session["HighscoreId"].ToString()));
-            Session["HighscoreId"] = null;
             Session["QuestionsAnswered"] = null;
             Session["PlayedPoints"] = null;
             Session["PlayedQuestions"] = null;
+            Session["Joker5050"] = null;
+            string stop = "Sie haben ihren Gewinn mit nach Hause genommen!";
+            Response.Redirect(String.Format("~/PlayerWinOrStop.aspx?winOrStop={0}&highscoreId={1}", stop, Session["HighscoreId"].ToString()));
+            Session["HighscoreId"] = null;
         }
 
         protected void SetHighScore()
@@ -216,6 +218,7 @@ namespace SaraZarubica_LB_M151_V232
             score.GameDuration = (DateTime.Now - ((DateTime)Session["StartTime"])).Seconds;
             score.MomentOfGame = (DateTime)Session["StartTime"];
             score.Points = GetPoints();
+            score.WeightedPoints = -1;
             score.PlayedCategories = getCids().Select(x => new PlayedCategories()
             {
                 CategoryId = x
@@ -253,7 +256,7 @@ namespace SaraZarubica_LB_M151_V232
             }
         }
 
-        private int GetPoints() //Gewinn abfangen
+        private int GetPoints()
         {
             if (Session["PlayedPoints"] != null)
             {

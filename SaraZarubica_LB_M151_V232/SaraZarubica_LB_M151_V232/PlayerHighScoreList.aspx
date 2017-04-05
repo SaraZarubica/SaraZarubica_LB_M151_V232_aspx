@@ -5,15 +5,16 @@
         <asp:Label ID="Label1" runat="server" Text="Highscore"></asp:Label>
     </p>
     <p>
-        <asp:GridView ID="gvHighscore" CssClass= "table table-striped table-bordered table-condensed" runat="server" OnRowDataBound="gvHighscore_RowDataBound">
+        <asp:GridView ID="gvHighscore" EmptyDataText="Keine Daten vorhanden" AutoGenerateColumns="false" CssClass= "table table-striped table-bordered table-condensed" runat="server" OnRowDataBound="gvHighscore_RowDataBound">
+            <Columns>                  
+                <asp:BoundField DataField="Rang" HeaderText="Rang" ReadOnly="true"/>                    
+                <asp:BoundField DataField="WeightedPoints"  HeaderText="Gewichtete Punkte" ReadOnly="true"/>
+                <asp:BoundField DataField="Name"  HeaderText="Name" ReadOnly="true"/>
+                <asp:BoundField DataField="MomentOfGame"  HeaderText="Zeitpunkt" ReadOnly="true"/>
+                <asp:BoundField DataField="Points"  HeaderText="Punkte" ReadOnly="true"/>
+                <asp:BoundField DataField="GameDuration"  HeaderText="Dauer in Sekunden" ReadOnly="true"/>
+                <asp:BoundField DataField="CategoryName"  HeaderText="Kategorien" ReadOnly="true"/>
+            </Columns>
         </asp:GridView>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
     </p>
 </asp:Content>

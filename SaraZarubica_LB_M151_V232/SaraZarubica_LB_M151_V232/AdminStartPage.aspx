@@ -11,8 +11,4 @@
         <asp:Button ID="btnC" CssClass="btn btn-default" runat="server" Text="Kategorien" OnClick="btnC_Click" />
         <asp:Button ID="btnH" CssClass="btn btn-default" runat="server" Text="Highscore" OnClick="btnH_Click" />
     </p>
-    <p>
-    </p>
-    <p>
-    </p>
 </asp:Content>

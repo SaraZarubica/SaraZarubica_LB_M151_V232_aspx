@@ -7,23 +7,19 @@
     <p>
         <asp:ListBox ID="lboxC" runat="server" SelectionMode="Multiple">
         </asp:ListBox>
+    </p>
+    <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label2" runat="server" Text="Tipp: Um mehrere Kategorien anzuwählen, halten Sie die ctrl Taste gedrückt."></asp:Label>
     </p>
+
+
     <p>
         <asp:TextBox ID="txtBoxError" CssClass="form-control input-lg"
             runat="server" TextMode="MultiLine" Visible="False"></asp:TextBox>
     </p>
+    <p>
+        &nbsp;</p>
     <asp:Button ID="btnStart" CssClass="btn btn-default"
         runat="server" Text="Spiel starten" OnClick="btnStart_Click" />
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
 </asp:Content>

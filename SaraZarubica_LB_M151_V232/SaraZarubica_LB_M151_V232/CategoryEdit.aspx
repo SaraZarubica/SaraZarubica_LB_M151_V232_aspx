@@ -10,6 +10,8 @@
             runat="server"></asp:TextBox>
     </p>
     <p>
+        &nbsp;</p>
+    <p>
         <asp:Button ID="btnSave" CssClass="btn btn-default"
             runat="server" Text="Speichern" OnClick="btnSave_Click1" />
         <asp:Button ID="btnDelete" CssClass="btn btn-default"
@@ -23,7 +25,5 @@
     <p>
         <asp:Button ID="btnBack" CssClass="btn btn-default"
             runat="server" Text="Abbrechen" OnClick="btnBack_Click" />
-    </p>
-    <p>
     </p>
 </asp:Content>

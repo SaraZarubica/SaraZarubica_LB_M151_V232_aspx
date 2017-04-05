@@ -45,7 +45,7 @@ namespace BusinessLayer.Repositories
             dbContext.SaveChanges();
         }
 
-        public List<Category> GetCategoryByIds(List<int> catIds)
+        public List<Category> GetCategoriesByIds(List<int> catIds)
         {
             return dbContext.Categories.Where(x => catIds.Contains(x.Id)).ToList();
         }

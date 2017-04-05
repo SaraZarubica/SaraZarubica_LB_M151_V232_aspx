@@ -401,8 +401,10 @@ hr {
 }
 
 p {
-  margin: 0 0 10px;
-    height: 33px;
+  height: 46px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
 }
 
 .lead {

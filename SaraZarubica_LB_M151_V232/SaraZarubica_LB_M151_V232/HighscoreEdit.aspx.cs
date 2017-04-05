@@ -34,7 +34,7 @@ namespace SaraZarubica_LB_M151_V232
         {
             if (h != null)
             {
-                //lblRank.Text = h.
+                lblRank.Text = getRanking().ToString();
                 lblWeightedPoints.Text = h.WeightedPoints.ToString();
                 lblName.Text = h.Name;
                 lblMomentOfGame.Text = h.MomentOfGame.ToString();
@@ -98,6 +98,13 @@ namespace SaraZarubica_LB_M151_V232
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/HighscoreList.aspx");
+        }
+
+        private int getRanking()
+        {
+            string strRank = Request.QueryString["rank"];
+            int ranking = Convert.ToInt32(strRank) + 1;
+            return ranking;
         }
     }
 }

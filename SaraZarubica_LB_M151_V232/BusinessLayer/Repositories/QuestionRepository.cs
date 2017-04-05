@@ -46,6 +46,13 @@ namespace BusinessLayer.Repositories
            return dbContext.Questions.Find(id);
         }
 
+        public string getCategoryTextById(int id)
+        {
+            var category =  dbContext.Categories.Find(id);
+            string categoryText = category.CategoryText;
+            return categoryText;
+        }
+
         public void Save(Question q)
         {
             if (q.Id < 1)

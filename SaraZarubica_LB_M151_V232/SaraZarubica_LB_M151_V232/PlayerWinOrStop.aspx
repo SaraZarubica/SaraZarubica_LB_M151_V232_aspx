@@ -18,6 +18,4 @@
     <p>
         <asp:Button ID="btnOk" CssClass="btn btn-default" runat="server" Text="Bestätigen" OnClick="btnOk_Click" />
     </p>
-    <p>
-    </p>
 </asp:Content>

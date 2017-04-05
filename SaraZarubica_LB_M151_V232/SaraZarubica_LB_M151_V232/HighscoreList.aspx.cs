@@ -23,7 +23,7 @@ namespace SaraZarubica_LB_M151_V232
             foreach(var h in list)
             {
                 List<int> catIds = h.PlayedCategories.Select(x => x.CategoryId).ToList();
-                vmList.Add(ToGvItem(h, catRep.GetCategoryByIds(catIds), ranking));
+                vmList.Add(ToGvItem(h, catRep.GetCategoriesByIds(catIds), ranking));
                 ranking++; 
             }
 
@@ -42,8 +42,10 @@ namespace SaraZarubica_LB_M151_V232
             {
                 if (row.RowIndex == gvHighscore.SelectedIndex)
                 {
+                    string ranking = row.RowIndex.ToString();
                     string id = row.Attributes["hId"];
-                    Response.Redirect("HighscoreEdit.aspx?hId=" + id);
+                    //Response.Redirect("HighscoreEdit.aspx?hId=" + id);
+                    Response.Redirect(String.Format("~/HighscoreEdit.aspx?hId={0}&rank={1}", id, ranking));
                 }
             }
         }

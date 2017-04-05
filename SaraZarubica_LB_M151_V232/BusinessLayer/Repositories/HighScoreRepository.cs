@@ -51,17 +51,17 @@ namespace BusinessLayer.Repositories
 
         public List<Highscore> GetAllHighscores()
         {
-            List<Highscore> hs = dbContext.Highscores.OrderBy(x => x.WeightedPoints).ToList();
+            List<Highscore> hs = dbContext.Highscores.OrderByDescending(x => x.WeightedPoints).ToList();
             return hs;
         }
 
         public void RemovePlayedCategories(List<PlayedCategories> playedC)
         {
-            for (int i = 0; i < playedC.Count; i++)
+            for (int i = 0; i <= playedC.Count; i++)
             {
                 dbContext.PlayedCategories.Remove(playedC[i]);
             }
-            
+            dbContext.SaveChanges();
         }
     }
 }

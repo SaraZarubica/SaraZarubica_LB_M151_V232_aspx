@@ -10,10 +10,4 @@
         <asp:Button ID="btnNewGame" CssClass="btn btn-default"
             runat="server" OnClick="btnNewGame_Click" Text="Neues Spiel" />
     </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
 </asp:Content>
