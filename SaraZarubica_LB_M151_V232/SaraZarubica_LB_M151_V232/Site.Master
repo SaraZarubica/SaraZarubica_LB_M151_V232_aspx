@@ -54,6 +54,7 @@
                         <li><a runat="server" href="~/Contact">Kontakt</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                             <li ><a runat="server" id="A1" href="~/AdminStartPage.aspx">Admin</a></li>
                              <li ><a runat="server" id="logIn" href="~/Account/Login.aspx">Log in</a></li>
                         <li><a runat="server" id="logOut" visible ="false" href="~/Account/LogOut.aspx">Log out</a></li>
                  </ul>

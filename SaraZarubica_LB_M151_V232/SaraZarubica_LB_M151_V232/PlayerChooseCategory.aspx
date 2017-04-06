@@ -5,7 +5,7 @@
         <asp:Label ID="Label1" runat="server" Text="Wähle eine Spielkategorie" Font-Size="Large"></asp:Label>
     </p>
     <p>
-        <asp:ListBox ID="lboxC" runat="server" SelectionMode="Multiple">
+        <asp:ListBox ID="lboxC" runat="server" SelectionMode="Multiple" CssClass="list-group">
         </asp:ListBox>
     </p>
     <p>
@@ -16,7 +16,7 @@
 
     <p>
         <asp:TextBox ID="txtBoxError" CssClass="form-control input-lg"
-            runat="server" TextMode="MultiLine" Visible="False"></asp:TextBox>
+            runat="server" TextMode="MultiLine" Visible="False" Width="626px"></asp:TextBox>
     </p>
     <p>
         &nbsp;</p>

@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="QuestionList.aspx.cs" Inherits="SaraZarubica_LB_M151_V232.QuestionList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <p></p>
     <p>
+        <asp:Label ID="Label1" runat="server" Font-Size="Medium" Text="Fragen"></asp:Label>
+        <br />
         <asp:GridView ID="gvQuestions" CssClass= "table table-striped table-bordered table-condensed"
             runat="server" AutoGenerateColumns="false"
             OnRowDataBound="gvQuestions_RowDataBound" OnSelectedIndexChanged="gvQuestions_SelectedIndexChanged">

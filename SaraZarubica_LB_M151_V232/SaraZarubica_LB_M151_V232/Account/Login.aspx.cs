@@ -39,7 +39,7 @@ namespace SaraZarubica_LB_M151_V232.Account
                         break;
                     case SignInStatus.Failure:
                     default:
-                        FailureText.Text = "Invalid login attempt";
+                        FailureText.Text = "Ungültige Benutzerdaten";
                         ErrorMessage.Visible = true;
                         break;
                 }

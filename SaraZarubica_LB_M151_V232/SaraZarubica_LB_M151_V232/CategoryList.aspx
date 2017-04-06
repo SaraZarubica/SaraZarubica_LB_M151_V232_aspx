@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CategoryList.aspx.cs" Inherits="SaraZarubica_LB_M151_V232.CategoryList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <p></p>
     <p>
+        <asp:Label ID="Label1" runat="server" Font-Size="Medium" Text="Kategorien"></asp:Label>
         <br />
-    </p>
-    <p>
         <asp:GridView ID="gvCategories" AutoGenerateColumns="false" CssClass= "table table-striped table-bordered table-condensed" runat="server" 
             OnRowDataBound="gvCategories_RowDataBound" OnSelectedIndexChanged="gvCategories_SelectedIndexChanged">
             <SelectedRowStyle BorderStyle="Dashed" />

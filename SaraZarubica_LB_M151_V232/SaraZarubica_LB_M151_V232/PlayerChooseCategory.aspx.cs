@@ -11,9 +11,16 @@ namespace SaraZarubica_LB_M151_V232
 {
     public partial class PlayerChooseCategory : System.Web.UI.Page
     {
-        public const int minCountQuestions = 2;
+        public const int minCountQuestions = 10;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["PlayedPoints"] = null;
+            Session["PlayedQuestions"] = null;
+            Session["QuestionsAnswered"] = null;
+            Session["StartTime"] = null;
+            Session["Joker5050"] = null;
+            Session["HighscoreId"] = null;
+
             if (!Page.IsPostBack)
             {
                 setView();

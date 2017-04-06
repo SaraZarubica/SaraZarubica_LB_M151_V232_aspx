@@ -19,12 +19,12 @@ namespace SaraZarubica_LB_M151_V232
             if (!Page.IsPostBack) // first load.
             {
                 string strId = Request.QueryString["hId"];
-                if (!string.IsNullOrEmpty(strId)) // existiert schon
+                if (!string.IsNullOrEmpty(strId))
                 {
                     int hId = Convert.ToInt32(strId);
                     loadAndSetHighscore(hId);
                 }
-                else // sollte nicht gehen (Neuer Highscore)
+                else
                 {
                     setView(null);
                 }

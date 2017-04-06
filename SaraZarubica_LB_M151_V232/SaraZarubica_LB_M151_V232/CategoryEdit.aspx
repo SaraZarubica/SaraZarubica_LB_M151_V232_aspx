@@ -3,7 +3,10 @@
     <p>
         <br />
         <asp:HiddenField ID="HiddenCId" runat="server" />
-    </p>
+        </p>
+        <p>
+            <asp:Label ID="Kategorie" runat="server" Text="Kategorie" Font-Size="Medium"></asp:Label>
+        </p>
     <p>
         <asp:Label ID="Label1" runat="server" Text="Kategorie"></asp:Label>
         <asp:TextBox ID="txtBoxC" CssClass="form-control input-lg"

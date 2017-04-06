@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HighscoreList.aspx.cs" Inherits="SaraZarubica_LB_M151_V232.HighscoreList" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p>
+
+        &nbsp;</p>
+    <p>
+        <asp:Label ID="Label1" runat="server" Font-Size="Medium" Text="Highscore"></asp:Label>
+        <br />
         <asp:GridView ID="gvHighscore" EmptyDataText="Keine Daten vorhanden" AutoGenerateColumns="false" CssClass= "table table-striped table-bordered table-condensed"  runat="server" OnRowDataBound="gvHighscore_RowDataBound" OnSelectedIndexChanged="gvHighscore_SelectedIndexChanged" Width="1308px">
         <Columns>                  
             <asp:BoundField DataField="Rang" HeaderText="Rang" ReadOnly="true"/>                    

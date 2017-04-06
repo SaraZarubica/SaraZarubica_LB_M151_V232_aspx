@@ -13,6 +13,15 @@ namespace SaraZarubica_LB_M151_V232 {
     public partial class QuestionEdit {
         
         /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
         /// hiddenQId control.
         /// </summary>
         /// <remarks>

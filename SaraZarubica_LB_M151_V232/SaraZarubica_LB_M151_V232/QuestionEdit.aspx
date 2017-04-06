@@ -1,13 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="QuestionEdit.aspx.cs" Inherits="SaraZarubica_LB_M151_V232.QuestionEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <p></p>
     <p>
+        <asp:Label ID="Label3" runat="server" Font-Size="Large" Text="Frage"></asp:Label>
+        <br />
         <asp:HiddenField ID="hiddenQId" runat="server" />
-    </p>
-    <p>
+        <br />
         <asp:Label ID="Label1" runat="server" Text="Kategorie"></asp:Label>
         <br />
         <asp:DropDownList ID="ddListCategories" CssClass="form-control"
-            runat="server" Width="100px">
+            runat="server" Width="150px">
         </asp:DropDownList>
     </p>
     <p></p>
@@ -16,7 +18,7 @@
         <br />
         <asp:TextBox ID="txtBoxQ" CssClass="form-control input-lg" runat="server" Height="30px" Width="300px"></asp:TextBox>
     </p>
-    <p></p>
+    <br />
     <p>
         Antwort 1
         <asp:HiddenField ID="hiddenA1" runat="server" />
@@ -31,8 +33,8 @@
             <asp:ListItem Value="1">Richtig</asp:ListItem>
         </asp:DropDownList>
     </p>
+    <p></p>
     <p>
-        <p></p>
         Antwort 2
         <asp:HiddenField ID="hiddenA2" runat="server" />
         <br />
@@ -45,7 +47,10 @@
             <asp:ListItem Value="0">Falsch</asp:ListItem>
             <asp:ListItem Value="1">Richtig</asp:ListItem>
         </asp:DropDownList>
+        <br />
     </p>
+    <p></p>
+    <p>
         Antwort 3
         <br />
         <asp:HiddenField ID="hiddenA3" runat="server" />
@@ -58,7 +63,9 @@
             <asp:ListItem Value="0">Falsch</asp:ListItem>
             <asp:ListItem Value="1">Richtig</asp:ListItem>
         </asp:DropDownList>
+        <br />
     </p>
+    <p></p>
         Antwort 4
         <br />
         <asp:HiddenField ID="hiddenA4" runat="server" />
@@ -72,8 +79,6 @@
             <asp:ListItem Value="1">Richtig</asp:ListItem>
         </asp:DropDownList>
 
-    <p>
-        &nbsp;</p>
     <p>
         <asp:TextBox ID="txtBoxError" CssClass="form-control input-lg"
             TextMode="MultiLine" Visible="false"  runat="server" Enabled="False"></asp:TextBox>

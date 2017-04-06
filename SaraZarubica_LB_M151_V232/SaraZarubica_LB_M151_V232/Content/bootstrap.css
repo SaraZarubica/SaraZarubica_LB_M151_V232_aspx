@@ -1751,7 +1751,6 @@ fieldset[disabled] .form-control {
 }
 
 textarea.form-control {
-  height: auto;
 }
 
 .form-group {
@@ -1850,7 +1849,6 @@ select.input-lg {
 }
 
 textarea.input-lg {
-  height: auto;
 }
 
 .has-warning .help-block,

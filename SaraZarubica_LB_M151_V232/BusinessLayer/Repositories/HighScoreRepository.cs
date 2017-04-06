@@ -28,7 +28,9 @@ namespace BusinessLayer.Repositories
             return dbContext.Highscores.Find(id);
         }
         public void Save(Highscore h)
-        {
+       {
+
+
             if (h.Id > 0)
             {
                 Highscore dbHighscore = dbContext.Highscores.Find(h.Id);
@@ -37,6 +39,23 @@ namespace BusinessLayer.Repositories
             else
             {
                 dbContext.Highscores.Add(h);
+            }
+            List<int> catIds = h.PlayedCategories.Select(x => x.CategoryId).ToList();
+            List<PlayedCategories> doubleItems = dbContext.PlayedCategories
+                .Where(x => catIds.Contains(x.CategoryId) && x.HighScoreId == h.Id).ToList();
+
+            if (doubleItems.Count() > 1)
+            {
+                for (int i = 0; i < doubleItems.Count; i++)
+                {
+                    var doubleItem = doubleItems[i];
+                    if (doubleItems.Where(x => x.CategoryId ==
+                    doubleItem.CategoryId && x.HighScoreId == doubleItem.HighScoreId).Count() > 1)
+                    {
+                        dbContext.PlayedCategories.Remove(doubleItem);
+                        doubleItems.RemoveAt(i);
+                    }
+                }
             }
             dbContext.SaveChanges();
         }
@@ -57,9 +76,9 @@ namespace BusinessLayer.Repositories
 
         public void RemovePlayedCategories(List<PlayedCategories> playedC)
         {
-            for (int i = 0; i <= playedC.Count; i++)
+            while (playedC.Count > 0)
             {
-                dbContext.PlayedCategories.Remove(playedC[i]);
+                dbContext.PlayedCategories.Remove(playedC[0]);
             }
             dbContext.SaveChanges();
         }

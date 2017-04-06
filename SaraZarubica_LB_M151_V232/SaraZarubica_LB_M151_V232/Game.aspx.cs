@@ -13,7 +13,7 @@ namespace SaraZarubica_LB_M151_V232
 {
     public partial class Game : System.Web.UI.Page
     {
-        private const int questionsCountGame = 2;
+        private const int questionsCountGame = 8;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Joker5050"] != null)
@@ -70,9 +70,7 @@ namespace SaraZarubica_LB_M151_V232
             {
                 lblATrue.Text = "Noch nie beantwortet.";
             }
-            playedQuestions.Add(q.Id);
             setQuestionsAndAnswersToView(q);
-            Session["PlayedQuestions"] = playedQuestions;
         }
         private Question getRandomQuestion(List<Question> qList)
         {
@@ -118,8 +116,13 @@ namespace SaraZarubica_LB_M151_V232
         protected void btnA1_Click(object sender, EventArgs e)
         {
             AnswerRepository aRep = new AnswerRepository();
+            QuestionRepository qRep = new QuestionRepository();
             if (isAnswerCorrect(btnA1, aRep))
             {
+                Question q = qRep.getQuestionById(Convert.ToInt32(hiddenQId.Value));
+                List<int> playedQuestions = getPlayedQuestions();
+                playedQuestions.Add(q.Id);
+                Session["PlayedQuestions"] = playedQuestions;
                 Session["QuestionsAnswered"] = getQuestionsAnswered() + 1;
                 btnA1.BackColor = System.Drawing.Color.Green;
                 refreshAfterSeconds();
@@ -134,8 +137,13 @@ namespace SaraZarubica_LB_M151_V232
         protected void btnA2_Click(object sender, EventArgs e)
         {
             AnswerRepository aRep = new AnswerRepository();
+            QuestionRepository qRep = new QuestionRepository();
             if (isAnswerCorrect(btnA2, aRep))
             {
+                Question q = qRep.getQuestionById(Convert.ToInt32(hiddenQId.Value));
+                List<int> playedQuestions = getPlayedQuestions();
+                playedQuestions.Add(q.Id);
+                Session["PlayedQuestions"] = playedQuestions;
                 Session["QuestionsAnswered"] = getQuestionsAnswered() + 1;
                 btnA2.BackColor = System.Drawing.Color.Green;
                 refreshAfterSeconds();
@@ -151,8 +159,13 @@ namespace SaraZarubica_LB_M151_V232
         protected void btnA3_Click(object sender, EventArgs e)
         {
             AnswerRepository aRep = new AnswerRepository();
+            QuestionRepository qRep = new QuestionRepository();
             if (isAnswerCorrect(btnA3, aRep))
             {
+                Question q = qRep.getQuestionById(Convert.ToInt32(hiddenQId.Value));
+                List<int> playedQuestions = getPlayedQuestions();
+                playedQuestions.Add(q.Id);
+                Session["PlayedQuestions"] = playedQuestions;
                 Session["QuestionsAnswered"] = getQuestionsAnswered() + 1;
                 btnA3.BackColor = System.Drawing.Color.Green;
                 refreshAfterSeconds();
@@ -168,8 +181,13 @@ namespace SaraZarubica_LB_M151_V232
         protected void btnA4_Click(object sender, EventArgs e)
         {
             AnswerRepository aRep = new AnswerRepository();
+            QuestionRepository qRep = new QuestionRepository();
             if (isAnswerCorrect(btnA4, aRep))
             {
+                Question q = qRep.getQuestionById(Convert.ToInt32(hiddenQId.Value));
+                List<int> playedQuestions = getPlayedQuestions();
+                playedQuestions.Add(q.Id);
+                Session["PlayedQuestions"] = playedQuestions;
                 Session["QuestionsAnswered"] = getQuestionsAnswered() + 1;
                 btnA4.BackColor = System.Drawing.Color.Green;
                 refreshAfterSeconds();
@@ -222,6 +240,7 @@ namespace SaraZarubica_LB_M151_V232
             {
                 CategoryId = x
             }).ToList();
+
             HighScoreRepository hRep = new HighScoreRepository();
             hRep.Save(score);
             Session["HighscoreId"] = score.Id;

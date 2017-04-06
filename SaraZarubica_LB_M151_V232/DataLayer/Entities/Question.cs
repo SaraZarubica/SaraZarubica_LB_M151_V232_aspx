@@ -9,6 +9,10 @@ namespace DataLayer.Entities
 {
     public class Question
     {
+        public Question()
+        {
+            Answers = new List<Answer>();
+        }
         [Key]
         public int Id { get; set; }
         [ForeignKey("User")]

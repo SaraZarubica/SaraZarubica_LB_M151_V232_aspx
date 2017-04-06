@@ -123,7 +123,7 @@ namespace SaraZarubica_LB_M151_V232
         {
             CategoryRepository cRep = new CategoryRepository();
             string strId = Request.QueryString["cId"];
-            if (!string.IsNullOrEmpty(strId)) // existiert schon
+            if (!string.IsNullOrEmpty(strId))
             {
                 cId = Convert.ToInt32(strId);
             }
