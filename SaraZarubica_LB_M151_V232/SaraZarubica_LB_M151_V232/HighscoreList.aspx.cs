@@ -44,7 +44,6 @@ namespace SaraZarubica_LB_M151_V232
                 {
                     string ranking = row.RowIndex.ToString();
                     string id = row.Attributes["hId"];
-                    //Response.Redirect("HighscoreEdit.aspx?hId=" + id);
                     Response.Redirect(String.Format("~/HighscoreEdit.aspx?hId={0}&rank={1}", id, ranking));
                 }
             }

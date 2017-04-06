@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessLayer.Repositories;
 using DataLayer.Entities;
+using SaraZarubica_LB_M151_V232.Models;
 
 namespace SaraZarubica_LB_M151_V232
 {
@@ -18,7 +19,14 @@ namespace SaraZarubica_LB_M151_V232
             QuestionRepository qRep = new QuestionRepository();
             int userId = getUserId();
             List<Question> list = qRep.GetAllQuestionsFromUserId(userId);
-            gvQuestions.DataSource = list;
+
+            List<VmQuestionGvItem> vmList = new List<VmQuestionGvItem>();
+            foreach (var h in list)
+            {
+                vmList.Add(ToGvItem(h));
+            }
+
+            gvQuestions.DataSource = vmList;
             gvQuestions.DataBind();
         }
 
@@ -38,7 +46,7 @@ namespace SaraZarubica_LB_M151_V232
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Question q = (Question)e.Row.DataItem;
+                VmQuestionGvItem q = (VmQuestionGvItem)e.Row.DataItem;
                 e.Row.Attributes["qId"] = q.Id.ToString();
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvQuestions, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Click to select this row.";
@@ -77,6 +85,16 @@ namespace SaraZarubica_LB_M151_V232
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/AdminStartPage.aspx");
+        }
+        private VmQuestionGvItem ToGvItem(Question h)
+        {
+            VmQuestionGvItem vm = new VmQuestionGvItem();
+            vm.QuestionText = h.QuestionText;
+            vm.Id = h.Id;
+            vm.CategoryId = h.CategoryId;
+            QuestionRepository qRep = new QuestionRepository();
+            vm.CategoryText = qRep.getCategoryTextById(h.CategoryId);
+            return vm;
         }
     }
 }

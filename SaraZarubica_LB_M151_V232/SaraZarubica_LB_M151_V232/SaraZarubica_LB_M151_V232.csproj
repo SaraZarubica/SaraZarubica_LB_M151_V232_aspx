@@ -456,6 +456,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\VmHighScoreGvItem.cs" />
+    <Compile Include="Models\VmQuestionGvItem.cs" />
     <Compile Include="PlayerChooseCategory.aspx.cs">
       <DependentUpon>PlayerChooseCategory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

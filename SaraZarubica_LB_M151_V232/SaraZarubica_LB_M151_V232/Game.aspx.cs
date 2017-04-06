@@ -88,7 +88,6 @@ namespace SaraZarubica_LB_M151_V232
             else
             {
                 Response.Redirect("~/Error.aspx?msg=ichbinsara");
-                // sollte nie soweit kommen. Categorie muss mindesten 15 fragen haben
             }
             throw new NotImplementedException();
         }
@@ -319,8 +318,8 @@ namespace SaraZarubica_LB_M151_V232
 
             buttons.Shuffle();
 
-            buttons[1].Visible = false;
-            buttons[2].Visible = false;
+            buttons[1].Enabled = false;
+            buttons[2].Enabled = false;
 
         }
 

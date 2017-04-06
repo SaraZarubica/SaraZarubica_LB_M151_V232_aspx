@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p>
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Wähle eine Spielkategorie"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Wähle eine Spielkategorie" Font-Size="Large"></asp:Label>
     </p>
     <p>
         <asp:ListBox ID="lboxC" runat="server" SelectionMode="Multiple">

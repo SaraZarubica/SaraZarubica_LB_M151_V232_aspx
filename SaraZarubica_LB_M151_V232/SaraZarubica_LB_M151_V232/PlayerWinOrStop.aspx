@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p>
         <br />
-        <asp:Label ID="lblWinOrStop" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblWinOrStop" runat="server" Text="Label" Font-Size="Large"></asp:Label>
     </p>
     <p>
     </p>

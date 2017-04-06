@@ -6,6 +6,7 @@
             OnRowDataBound="gvQuestions_RowDataBound" OnSelectedIndexChanged="gvQuestions_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField DataField="QuestionText" HeaderText="Frage" />
+                <asp:BoundField DataField="CategoryText" HeaderText="Kategorie" />
             </Columns>
         </asp:GridView>
 
