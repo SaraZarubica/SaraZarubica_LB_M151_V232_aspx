@@ -27,12 +27,7 @@ namespace BusinessLayer.Repositories
 
             return q;
         }
-
-        public int GetQuestionsSize(List<int> ids)
-        {
-            var questionsSize = dbContext.Questions.Where(x => ids.Contains(x.CategoryId)).Count();
-            return questionsSize;
-        }
+        
         public List<Question> GetAllQuestionsFromUserId(int userId)
         {
             List<Question> q = dbContext.Questions.Where(x =>
@@ -46,7 +41,7 @@ namespace BusinessLayer.Repositories
            return dbContext.Questions.Find(id);
         }
 
-        public string getCategoryTextById(int id)
+        public string getCategoryTextByCategoryId(int id)
         {
             var category =  dbContext.Categories.Find(id);
             string categoryText = category.CategoryText;

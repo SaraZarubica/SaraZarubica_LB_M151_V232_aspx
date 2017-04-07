@@ -93,7 +93,7 @@ namespace SaraZarubica_LB_M151_V232
             vm.Id = h.Id;
             vm.CategoryId = h.CategoryId;
             QuestionRepository qRep = new QuestionRepository();
-            vm.CategoryText = qRep.getCategoryTextById(h.CategoryId);
+            vm.CategoryText = qRep.getCategoryTextByCategoryId(h.CategoryId);
             return vm;
         }
     }

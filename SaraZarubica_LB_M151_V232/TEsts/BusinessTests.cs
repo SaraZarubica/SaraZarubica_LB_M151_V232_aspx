@@ -94,7 +94,7 @@ namespace TEsts
         }
 
         [TestMethod]
-        public void CountQuestionFromCategory()
+        public void CountQuestionFromCategoryTest()
         {
             var dbCategory = DbContext.Categories.FirstOrDefault();
             Assert.IsTrue(dbCategory != null);
@@ -107,7 +107,7 @@ namespace TEsts
         }
 
         [TestMethod]
-        public void getCategoryById()
+        public void getCategoryByIdTest()
         {
             var dbCategory = DbContext.Categories.FirstOrDefault();
             Assert.IsTrue(dbCategory != null);
@@ -117,9 +117,9 @@ namespace TEsts
             Assert.AreEqual(dbCategory.Id, category.Id);
             Assert.AreEqual(dbCategory.CategoryText, category.CategoryText);
         }
-
+        
         [TestMethod]
-        public void SetQuestionStatisticsOneUp()
+        public void SetQuestionStatisticsOneUpTest()
         {
             var dbQuestion = DbContext.Questions.FirstOrDefault();
             Assert.IsTrue(dbQuestion != null);
@@ -137,7 +137,37 @@ namespace TEsts
         }
 
         [TestMethod]
-        public void checkAnswersFromQuestion()
+        public void GetQuestionByIdTest()
+        {
+            var dbQuestion = DbContext.Questions.FirstOrDefault();
+            var dbQuestionId = dbQuestion.Id;
+            Assert.IsTrue(dbQuestionId > 0);
+
+            Question q = QRep.getQuestionById(dbQuestionId);
+
+            Assert.AreEqual(dbQuestion.Id, q.Id);
+            Assert.AreEqual(dbQuestion.QuestionText, q.QuestionText);
+        }
+
+        [TestMethod]
+        public void GetCategoryTextByCategoryIdTest()
+        {
+            var dbQuestion = DbContext.Questions.FirstOrDefault();
+            var dbQuestionCategoryId = dbQuestion.CategoryId;
+            Assert.IsTrue(dbQuestionCategoryId > 0);
+
+            Category dbC = DbContext.Categories.Find(dbQuestionCategoryId);
+            Assert.IsTrue(dbC != null);
+            var dbCText = dbC.CategoryText;
+
+            var cText = QRep.getCategoryTextByCategoryId(dbQuestionCategoryId);
+
+            Assert.AreEqual(dbCText, cText);
+
+        }
+
+        [TestMethod]
+        public void checkAnswersFromQuestionTest()
         {
             var question = DbContext.Questions.FirstOrDefault();
 
@@ -161,22 +191,39 @@ namespace TEsts
         }
 
         [TestMethod]
-        public void saveHighscore()
+        public void GetAnswersFromQuestionTest()
         {
-            var dbHighscore = new Highscore();
-            dbHighscore.GameDuration = 5;
-            dbHighscore.MomentOfGame = DateTime.Now;
-            dbHighscore.PlayedCategories = DbContext.PlayedCategories.ToList();
-            dbHighscore.Name = "Sara";
-            dbHighscore.Points = 30;
-            Assert.IsTrue(dbHighscore != null);
+            var dbQuestion = DbContext.Questions.FirstOrDefault();
+            Assert.IsTrue(dbQuestion != null);
+            var dbQuestionId = dbQuestion.Id;
 
-            HRep.Save(dbHighscore);
-            int id = dbHighscore.Id;
+            var dbAnswers = dbQuestion.Answers;
 
-            HRep.Delete(id);
+            var answers = ARep.getAnswersFromQuestion(dbQuestionId);
 
-            Assert.IsTrue(dbHighscore == null);
+            Assert.AreEqual(dbAnswers.Count, answers.Count);
+            Assert.AreEqual(dbAnswers[0].Id, answers[0].Id);
+            Assert.AreEqual(dbAnswers[0].QuestionId, answers[0].QuestionId);
+
         }
+
+        //[TestMethod]
+        //public void saveHighscore()
+        //{
+        //    var dbHighscore = new Highscore();
+        //    dbHighscore.GameDuration = 5;
+        //    dbHighscore.MomentOfGame = DateTime.Now;
+        //    dbHighscore.PlayedCategories = DbContext.PlayedCategories.ToList();
+        //    dbHighscore.Name = "Sara";
+        //    dbHighscore.Points = 30;
+        //    Assert.IsTrue(dbHighscore != null);
+
+        //    HRep.Save(dbHighscore);
+        //    int id = dbHighscore.Id;
+
+        //    HRep.Delete(id);
+
+        //    Assert.IsTrue(dbHighscore == null);
+        //}
     }
 }
