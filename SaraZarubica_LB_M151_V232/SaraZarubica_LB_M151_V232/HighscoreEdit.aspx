@@ -1,10 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HighscoreEdit.aspx.cs" Inherits="SaraZarubica_LB_M151_V232.HighscoreEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p>
+        &nbsp;</p>
+    <p>
         <br />
         <asp:Label ID="Label8" runat="server" Font-Size="Large" Text="Highscore Eintrag"></asp:Label>
     </p>
-    <p></p>
+    <p>
+        &nbsp;</p>
     <p>
         <asp:Label ID="Label1" runat="server" Text="Rang:"></asp:Label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
