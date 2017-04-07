@@ -207,6 +207,34 @@ namespace TEsts
 
         }
 
+        [TestMethod]
+        public void GetAllHighscoresTest()
+        {
+            var dbHighscores = DbContext.Highscores.ToList();
+            Assert.IsTrue(dbHighscores != null);
+
+            var highscores = HRep.GetAllHighscores();
+
+            Assert.AreEqual(dbHighscores.Count, highscores.Count);
+            Assert.AreEqual(dbHighscores[0].Id, highscores[0].Id);
+            Assert.AreEqual(dbHighscores[0].Name, highscores[0].Name);
+
+        }
+
+        [TestMethod]
+        public void getHighscoreByIdTest()
+        {
+            var dbHighscore = DbContext.Highscores.FirstOrDefault();
+            Assert.IsTrue(dbHighscore != null);
+
+            var highscore = HRep.getHighscoreById(dbHighscore.Id);
+
+            Assert.AreEqual(dbHighscore.Id, highscore.Id);
+            Assert.AreEqual(dbHighscore.Name, highscore.Name);
+            Assert.AreEqual(dbHighscore.Points, highscore.Points);
+
+        }
+        
         //[TestMethod]
         //public void saveHighscore()
         //{
