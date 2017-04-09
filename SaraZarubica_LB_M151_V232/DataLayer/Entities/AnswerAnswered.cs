@@ -14,12 +14,9 @@ namespace DataLayer.Entities
         public int Id { get; set; }
         [ForeignKey("Question")]
         public int QuestionId { get; set; }
-        [ForeignKey("GameStatus")]
-        public int GameStatusId { get; set; }
         public bool Correctness { get; set; }
 
         // Lazy loadig Properties
         public virtual Question Question { get; set; }
-        public virtual GameStatus GameStatus { get; set; }
     }
 }

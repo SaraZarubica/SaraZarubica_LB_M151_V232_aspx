@@ -17,7 +17,6 @@ namespace DataLayer
         public DbSet<Answer> Answers { get; set; }
         public DbSet<AnswerAnswered> AnswersAnswered { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<GameStatus> GameStatus { get; set; }
         public DbSet<Highscore> Highscores { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<User> Users { get; set; }
