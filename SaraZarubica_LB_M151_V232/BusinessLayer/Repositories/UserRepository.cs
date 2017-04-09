@@ -27,9 +27,9 @@ namespace BusinessLayer.Repositories
 
         public bool Register(string userName, string password, Roll roll)
         {
-            byte[] salt = PasswordHelper.GetSalt(128);
-            byte[] passwordSalted = PasswordHelper.GenerateSaltedHash(StringUtils.GetByteArray(password), salt);
-            User user = new User() { Password = passwordSalted, Salt = salt, Username = userName, Roll = roll };
+            byte[] salt = PasswordHelper.GetSalt(128); // salt generieren
+            byte[] passwordSalted = PasswordHelper.GenerateSaltedHash(StringUtils.GetByteArray(password), salt); //pw to bytearray, pw byte array mit salt hashen
+            User user = new User() { Password = passwordSalted, Salt = salt, Username = userName, Roll = roll }; // salted pw wird gespeichert
             if(dbContext.Users.Where(x => x.Username.ToLower() == userName.ToLower()).FirstOrDefault() == null)
             {
                 dbContext.Users.Add(user);
@@ -51,8 +51,8 @@ namespace BusinessLayer.Repositories
             User u = GetUserByUserName(userName);
             if(u != null)
             {
-                byte[] typedPw = PasswordHelper.GenerateSaltedHash(StringUtils.GetByteArray(password), u.Salt);
-                result = PasswordHelper.CompareByteArrays(u.Password, typedPw);
+                byte[] typedPw = PasswordHelper.GenerateSaltedHash(StringUtils.GetByteArray(password), u.Salt); // eingegebenes pw beim login wird mit dem salt (der in der DB ist) gehasht
+                result = PasswordHelper.CompareByteArrays(u.Password, typedPw); // pw der datenbank (schon beim registrieren gesalthashed) wird mit dem jetzigen hash verglichen, falls gleich user eingeloggt
             }
            
             return result;

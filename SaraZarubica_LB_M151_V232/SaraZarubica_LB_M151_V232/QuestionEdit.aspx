@@ -16,14 +16,14 @@
     <p>
         <asp:Label ID="Label2" runat="server" Text="Frage"></asp:Label>
         <br />
-        <asp:TextBox ID="txtBoxQ" CssClass="form-control input-lg" runat="server" Height="30px" Width="300px"></asp:TextBox>
+        <asp:TextBox ID="txtBoxQ" CssClass="form-control input-lg" runat="server" Height="30px" Width="300px" required="required"></asp:TextBox>
     </p>
     <br />
     <p>
         Antwort 1
         <asp:HiddenField ID="hiddenA1" runat="server" />
         <br />
-        <asp:TextBox ID="txtBoxA1" CssClass="form-control input-lg" runat="server" Height="30px" Width="300px"></asp:TextBox>
+        <asp:TextBox ID="txtBoxA1" CssClass="form-control input-lg" runat="server" Height="30px" Width="300px"  required="required"></asp:TextBox>
         
         Richtigkeit:
         <br />
@@ -38,7 +38,7 @@
         Antwort 2
         <asp:HiddenField ID="hiddenA2" runat="server" />
         <br />
-        <asp:TextBox ID="txtBoxA2" CssClass="form-control input-lg" runat="server" Height="30px" Width="300px"></asp:TextBox>
+        <asp:TextBox ID="txtBoxA2" CssClass="form-control input-lg" runat="server" Height="30px" Width="300px"  required="required"></asp:TextBox>
         
         Richtigkeit:
         <br />
@@ -54,7 +54,7 @@
         Antwort 3
         <br />
         <asp:HiddenField ID="hiddenA3" runat="server" />
-        <asp:TextBox ID="txtBoxA3" CssClass="form-control input-lg" runat="server" Height="30px" Width="300px"></asp:TextBox>
+        <asp:TextBox ID="txtBoxA3" CssClass="form-control input-lg" runat="server" Height="30px" Width="300px" required="required"></asp:TextBox>
         
         Richtigkeit:
         <br />
@@ -69,7 +69,7 @@
         Antwort 4
         <br />
         <asp:HiddenField ID="hiddenA4" runat="server" />
-        <asp:TextBox ID="txtBoxA4" CssClass="form-control input-lg" runat="server" Height="30px" Width="299px"></asp:TextBox>
+        <asp:TextBox ID="txtBoxA4" CssClass="form-control input-lg" runat="server" Height="30px" Width="299px" required="required"></asp:TextBox>
         
         Richtigkeit:
         <br />

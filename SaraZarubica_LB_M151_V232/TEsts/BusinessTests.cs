@@ -5,6 +5,7 @@ using DataLayer;
 using System.Linq;
 using BusinessLayer.Repositories;
 using DataLayer.Entities;
+using System.Collections.Generic;
 
 namespace TEsts
 {
@@ -16,6 +17,7 @@ namespace TEsts
         private AnswerRepository _aRep;
         private QuestionRepository _qRep;
         private HighScoreRepository _hRep;
+        private UserRepository _uRep;
 
         private DataContext DbContext
         {
@@ -77,6 +79,17 @@ namespace TEsts
             }
         }
 
+        private UserRepository URep
+        {
+            get
+            {
+                if (_uRep == null)
+                {
+                    _uRep = new UserRepository();
+                }
+                return _uRep;
+            }
+        }
 
         [TestMethod]
         public void GetAllCategoriesTest()
@@ -117,7 +130,27 @@ namespace TEsts
             Assert.AreEqual(dbCategory.Id, category.Id);
             Assert.AreEqual(dbCategory.CategoryText, category.CategoryText);
         }
-        
+
+        [TestMethod]
+        public void GetCategoriesByIdsTest()
+        {
+            List<int> dbCategorieIds = DbContext.Categories.Select(x => x.Id).ToList();
+            if(dbCategorieIds.Count < 1)
+            {
+                throw new Exception("No Categories there to test");
+            }
+
+
+            var categories = CatRep.GetCategoriesByIds(dbCategorieIds);
+            List<int> categorieIds = categories.Select(x => x.Id).ToList();
+
+            Assert.IsTrue(dbCategorieIds.Count == categorieIds.Count);
+            foreach(int id in dbCategorieIds)
+            {
+                Assert.IsTrue(categorieIds.Contains(id));
+            }
+        }
+
         [TestMethod]
         public void SetQuestionStatisticsOneUpTest()
         {
@@ -210,7 +243,7 @@ namespace TEsts
         [TestMethod]
         public void GetAllHighscoresTest()
         {
-            var dbHighscores = DbContext.Highscores.ToList();
+            var dbHighscores = DbContext.Highscores.OrderByDescending(x => x.WeightedPoints).ToList();
             Assert.IsTrue(dbHighscores != null);
 
             var highscores = HRep.GetAllHighscores();
@@ -234,24 +267,89 @@ namespace TEsts
             Assert.AreEqual(dbHighscore.Points, highscore.Points);
 
         }
-        
-        //[TestMethod]
-        //public void saveHighscore()
-        //{
-        //    var dbHighscore = new Highscore();
-        //    dbHighscore.GameDuration = 5;
-        //    dbHighscore.MomentOfGame = DateTime.Now;
-        //    dbHighscore.PlayedCategories = DbContext.PlayedCategories.ToList();
-        //    dbHighscore.Name = "Sara";
-        //    dbHighscore.Points = 30;
-        //    Assert.IsTrue(dbHighscore != null);
 
-        //    HRep.Save(dbHighscore);
-        //    int id = dbHighscore.Id;
+        [TestMethod]
+        public void GetAllQuestionsTest()
+        {
+            var dbUser = DbContext.Users.FirstOrDefault();
+            Assert.IsTrue(dbUser != null);
 
-        //    HRep.Delete(id);
+            var dbQuestions = dbUser.Questions.ToList();
 
-        //    Assert.IsTrue(dbHighscore == null);
-        //}
+            var questions = URep.GetAllQuestions(dbUser.Id);
+
+            Assert.AreEqual(dbQuestions[0].Id, questions[0].Id);
+            Assert.AreEqual(dbQuestions[0].QuestionText, questions[0].QuestionText);
+
+        }
+
+        [TestMethod]
+        public void SaveHighscoreTest()
+        {
+            var highscore = new Highscore();
+            highscore.GameDuration = 5;
+            highscore.MomentOfGame = DateTime.Now;
+            highscore.PlayedCategories = DbContext.PlayedCategories.ToList();
+            highscore.Name = "Sara_TestMethod_Highscore";
+            highscore.Points = 30;
+
+            HRep.Save(highscore);
+            int id = highscore.Id;
+            Assert.IsTrue(id > 0);
+            Highscore dbHighscore = DbContext.Highscores.FirstOrDefault(x => x.Name == highscore.Name && x.Id == highscore.Id);
+            Assert.IsTrue(dbHighscore != null);
+            HRep.Delete(id);
+            dbHighscore = DbContext.Highscores.FirstOrDefault(x => x.Name == highscore.Name && x.Id == highscore.Id);
+            Assert.IsTrue(dbHighscore == null);
+        }
+
+        [TestMethod]
+        public void SaveQuestion()
+        {
+
+            User admin = URep.GetUserByUserName("Admin");
+
+            var question = new Question();
+            Answer a1_3 = new Answer() { AnswerText = "Bambi", UserId = admin.Id, Correctness = false };
+            Answer a2_3 = new Answer() { AnswerText = "Höhle", UserId = admin.Id, Correctness = false };
+            Answer a3_3 = new Answer() { AnswerText = "Einhorn", UserId = admin.Id, Correctness = true };
+            Answer a4_3 = new Answer() { AnswerText = "Elch", UserId = admin.Id, Correctness = false };
+
+
+            question.CategoryId = CatRep.GetAllCategoriesFromUserId(admin.Id).FirstOrDefault().Id;
+            question.UserId = admin.Id;
+            question.QuestionText = "Passwort zum Schulzimmer?";
+            question.Answers.AddRange(new List<Answer>() { a1_3, a2_3, a3_3, a4_3 });
+
+            QRep.Save(question);
+            int id = question.Id;
+            Assert.IsTrue(id > 0);
+            Question dbQuestion = DbContext.Questions.FirstOrDefault(x => x.QuestionText == question.QuestionText && x.Id == question.Id);
+            Assert.IsTrue(dbQuestion != null);
+
+            QRep.Delete(question.Id);
+            dbQuestion = DbContext.Questions.FirstOrDefault(x => x.QuestionText == question.QuestionText && x.Id == question.Id);
+            Assert.IsTrue(dbQuestion == null);
+        }
+
+        [TestMethod]
+        public void SaveCategoryTest()
+        {
+            User admin = URep.GetUserByUserName("Admin");
+
+            var category = new Category();
+            category.CategoryText = "hallo";
+            category.Questions = null;
+            category.UserId = admin.Id;
+
+            CatRep.Save(category);
+            int id = category.Id;
+            Assert.IsTrue(id > 0);
+            Category dbCategory = DbContext.Categories.FirstOrDefault(x => x.CategoryText == category.CategoryText && x.Id == category.Id);
+            Assert.IsTrue(dbCategory != null);
+            CatRep.Delete(id);
+            dbCategory = DbContext.Categories.FirstOrDefault(x => x.CategoryText == category.CategoryText && x.Id == category.Id);
+            Assert.IsTrue(dbCategory == null);
+        }
     }
 }

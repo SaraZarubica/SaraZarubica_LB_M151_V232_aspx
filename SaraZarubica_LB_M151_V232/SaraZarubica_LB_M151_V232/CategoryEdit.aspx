@@ -10,7 +10,7 @@
     <p>
         <asp:Label ID="Label1" runat="server" Text="Kategorie"></asp:Label>
         <asp:TextBox ID="txtBoxC" CssClass="form-control input-lg"
-            runat="server"></asp:TextBox>
+            runat="server" required="required"></asp:TextBox>
     </p>
     <p>
         &nbsp;</p>

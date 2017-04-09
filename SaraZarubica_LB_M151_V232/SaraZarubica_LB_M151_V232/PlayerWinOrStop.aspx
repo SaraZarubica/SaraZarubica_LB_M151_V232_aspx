@@ -10,7 +10,7 @@
         <asp:Label ID="Label1" runat="server" Text="Geben Sie Ihren Namen für die Highscoreliste ein:"></asp:Label>
     </p>
     <p>
-        <asp:TextBox ID="txtBoxHName" CssClass="form-control input-lg" runat="server" Width="304px" Height="16px"></asp:TextBox>
+        <asp:TextBox ID="txtBoxHName" CssClass="form-control input-lg" runat="server" Width="304px" Height="16px" required="required"></asp:TextBox>
     </p>
     <p>
         <asp:TextBox ID="txtBoxError" CssClass="form-control input-lg" runat="server" Visible="False" Width="303px"></asp:TextBox>
